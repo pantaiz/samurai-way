@@ -1,0 +1,8 @@
+.content {
+    grid-area: c;
+    background-color: coral;
+}
+
+.baner img{
+    width: 100%;
+}

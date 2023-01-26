@@ -1,0 +1,10 @@
+.nav {
+    grid-area: n;
+
+    background-color: cornflowerblue;
+    border-radius: 20px;
+
+}
+.item{
+    color: white;
+}
