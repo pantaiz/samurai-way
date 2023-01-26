@@ -7,10 +7,10 @@ import Profile from "./components/Profile/Profile";
 function App() {
     return (
         <div className={'app-wraper'}>
-           <Header/>
+            <Header/>
             <Navbar/>
             <Profile/>
-            </div>
+        </div>
     );
 }
 
