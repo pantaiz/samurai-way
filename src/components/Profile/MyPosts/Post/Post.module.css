@@ -1,0 +1,8 @@
+.item{
+    color: crimson;
+}
+.item img{
+    width: 100px;
+    border-radius: 10px;
+    height: 100px;
+}
