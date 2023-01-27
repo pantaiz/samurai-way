@@ -3,8 +3,9 @@ import s from './Header.module.css';
 
 const Header = () => {
     return( <header className={s.header}>
-        <img alt={'logo'} src='https://www.logolynx.com/images/logolynx/56/567ad0122e6b61fd940ab566f6fd6598.png'/>
-    </header>)
 
+        <img alt={'logo'} src={'./logo.png'}/> <span>IVAN SVITICH SOCIAL NETWORK</span>
+
+    </header>)
 }
 export default Header

@@ -1,10 +1,29 @@
 .nav {
     grid-area: n;
-
+    padding: 30px 0px 0px 30px;
     background-color: cornflowerblue;
+    border-radius: 0px;
+    background-color:#262828;
+    font-family: 'Aboreto', cursive;
+    font-size: 20px;
+    height: 400px;
     border-radius: 20px;
-
 }
 .item{
-    color: white;
+    padding-top: 40px;
+}
+.item a{
+    padding-left: 10px;
+    color: #caa45d;
+    text-decoration: none;
+
+}
+.item a.activelink{
+    color: #262828;
+    border-color: #caa45d;
+    border-style: solid;
+    padding:10px;
+    font-weight:700;
+    border-radius: 20px;
+    background: #caa45d;
 }

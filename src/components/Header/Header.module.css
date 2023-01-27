@@ -1,7 +1,21 @@
 .header {
+    display: flex;
+    color: crimson;
     grid-area: h;
-    background-color: darkgreen;
+    border-radius: 10px;
+    background-color:#262828;
+
+}
+.header span{
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    font-size: 40px;
+    color: #caa45d;
 }
 .header img{
-    width: 70px;
+    width: 80px;
+    border-radius: 35px;
+    position: relative;
+
 }

@@ -1,16 +1,21 @@
 .app-wraper {
     display: grid;
-    width: 1200px;
+    width: 800px;
     margin: auto;
-    grid-template-rows:50px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 10px;
+    font-family: 'Aboreto', cursive;
+
+    grid-template-rows:80px 1fr;
+    grid-template-columns: 3fr 10fr;
+    grid-gap: 8px;
     grid-template-areas:
                             "h h h"
                             "n c c";
 }
 
 .app-wraper-content {
+    width: auto;
+    border-radius: 20px;
+    background-color:#262828;
     grid-area: c;
-    background-color: coral;
+    color:#d1aa61;
 }
