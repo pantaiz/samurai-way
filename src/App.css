@@ -10,5 +10,7 @@
                             "n c c";
 }
 
-
-
+.app-wraper-content {
+    grid-area: c;
+    background-color: coral;
+}
