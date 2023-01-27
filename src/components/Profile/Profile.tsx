@@ -8,11 +8,9 @@ const Profile = () => {
                 <img alt={'backround-image'}
                      src={'https://img3.goodfon.ru/original/1280x1024/2/5a/pasture-the-bavarian-alps.jpg'}/>
             </div>
-
             <div>
                 ava+description
             </div>
-
             <MyPosts/>
         </div>
     )
