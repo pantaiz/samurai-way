@@ -1,0 +1,9 @@
+.banner img{
+    width: 50%;
+    border-radius: 40px;
+}
+.banner{
+    display: grid;
+    justify-items: center;
+    padding-top: 50px;
+}
