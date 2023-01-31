@@ -1,41 +1,45 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import s from './Dialogs.module.css';
+import {DialigsItem} from "./DialigsItem/DialigsItem";
+import { Message } from "./Message/Message";
 
-type DialigsItemProps={
+export type  DialogsDataProps={
+    id:number,
     name:string
-    id:number
+}
+export type  MessageDataProps={
+    id:number,
+    text:string
 }
 
-const DialigsItem = (props:DialigsItemProps) => {
-    return <div className={s.dialog+' '+s.active}>
-        <NavLink to={"/dialogs/"+props.id} activeClassName={s.activelink}>{props.name}</NavLink> </div>
-}
-type MessageProps={
-    text:string
-    mymessage?:string
-}
-const Message = (props:MessageProps) => {
-   return <div className={s.message+" "+props.mymessage}>{props.text}</div>
-}
+
+
+
 const Dialogs = () => {
+    let dialogsDataArr: Array<DialogsDataProps> = [
+        {id: 1, name: "Dimych"},
+        {id: 2, name: "Marharita"},
+        {id: 3, name: "Roma"},
+        {id: 4, name: "Vitalya"},
+        {id: 5, name: "Artem"},
+        {id: 6, name: "Jenya"},
+    ]
+    let messageDataArr: Array<MessageDataProps> = [
+        {id: 1, text: "Hi"},
+        {id: 2, text: "Darova chel"},
+        {id: 3, text: "It's test messag"},
+        {id: 4, text: "Ti cho bla?"},
+        {id: 5, text: "Vilkoy v glaz?"},
+        {id: 6, text: "Aga"},
+    ]
+
     return (<div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialigsItem id={1} name={"Dimych"}/>
-                <DialigsItem id={2} name={"Marharita"}/>
-                <DialigsItem id={3} name={"Roma"}/>
-                <DialigsItem id={4} name={"Vitalya"}/>
-                <DialigsItem id={5} name={"Artem"}/>
-                <DialigsItem id={6} name={"Jenya"}/>
+                <DialigsItem dialogsData={dialogsDataArr}/>
             </div>
-        <div className={s.messages}>
-            <Message text={"Hi"} />
-            <Message text={"Darova chel"} mymessage={s.mymessage}/>
-            <Message text={"It's test message"} />
-            <Message text={"Ti cho bla?"} mymessage={s.mymessage}/>
-            <Message text={"Vilkoy v glaz?"}/>
-            <Message text={"Aga"} mymessage={s.mymessage}/>
-        </div>
+            <div className={s.messages}>
+                <Message messageData={messageDataArr}/>
+            </div>
         </div>
     )
 

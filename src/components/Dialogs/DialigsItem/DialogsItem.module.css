@@ -1,0 +1,19 @@
+.dialog{
+    padding: 20px;
+}
+.dialog a{
+    padding-left: 10px;
+    color:white;/* #caa45d;*/
+    text-decoration: none;
+
+}
+.activelink{
+    color: #262828;
+    border-color: #caa45d;
+    border-style: solid;
+    padding:10px;
+    font-weight:700;
+    border-radius: 20px;
+    background: #caa45d;
+    text-decoration: none;
+}
