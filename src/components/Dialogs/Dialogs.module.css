@@ -4,12 +4,3 @@
     padding: 20px;
 
 }
-.dialogsItems{
-    padding: 10px;
-    border-right: solid;
-}
-
-.mymessage{
-    display: grid;
-    justify-content: end;
-}

@@ -34,12 +34,8 @@ const Dialogs = () => {
     ]
 
     return (<div className={s.dialogs}>
-            <div className={s.dialogsItems}>
                 <DialigsItem dialogsData={dialogsDataArr}/>
-            </div>
-            <div className={s.messages}>
                 <Message messageData={messageDataArr}/>
-            </div>
         </div>
     )
 

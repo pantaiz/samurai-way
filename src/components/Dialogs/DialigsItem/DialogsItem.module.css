@@ -17,3 +17,7 @@
     background: #caa45d;
     text-decoration: none;
 }
+.dialogsItems{
+    padding: 10px;
+    border-right: solid;
+}
