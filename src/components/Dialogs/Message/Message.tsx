@@ -1,9 +1,10 @@
 import s from "./Message.module.css";
 import React from "react";
-import {MessageDataProps} from "../Dialogs";
+import {MessageDataType} from "../../../index";
+
 
 export type MessageProps = {
-    messageData: Array<MessageDataProps>
+    messageData: Array<MessageDataType>
 }
 
 export const Message = (props: MessageProps) => {

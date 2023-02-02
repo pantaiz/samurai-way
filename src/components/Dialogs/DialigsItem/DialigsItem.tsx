@@ -1,10 +1,11 @@
 import s from "./DialogsItem.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import {DialogsDataProps} from "../Dialogs";
+import {DialogsItemDataType} from "../../../index";
+
 
 type DialigsProps = {
-    dialogsData: Array<DialogsDataProps>
+    dialogsData: Array<DialogsItemDataType>
 }
 
 export const DialigsItem = (props: DialigsProps) => {

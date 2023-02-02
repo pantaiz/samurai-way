@@ -1,18 +1,13 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {MyPostsData} from "../../../index";
 
-let postDataArr: Array<PostDataProps> = [
-    {id: 1, message: "It\'s my first comment", likeCounts: 15},
-    {id: 2, message: "Hi, how are you? ", likeCounts: 20},
-]
-export type PostDataProps = {
-    id: number,
-    message: string,
-    likeCounts: number
+type MyPostsProps = {
+    myPostsData:MyPostsData
 }
 
-const MyPosts = () => {
+const MyPosts = (props:MyPostsProps) => {
     return (
         <div className={s.MyPosts}>
             My post
@@ -20,7 +15,7 @@ const MyPosts = () => {
                 <textarea></textarea>
                 <button>ADd post</button>
                 <div className={s.posts}>New Posts</div>
-                <Post postData={postDataArr}/>
+                <Post postData={props.myPostsData.PostData}/>
             </div>
         </div>
     )

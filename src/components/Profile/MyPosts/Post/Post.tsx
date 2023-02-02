@@ -1,9 +1,10 @@
 import React from "react";
 import s from './Post.module.css';
-import {PostDataProps} from "../MyPosts";
+import {PostData} from "../../../../index";
+
 
 type PostProps={
-    postData:Array<PostDataProps>
+    postData:Array<PostData>
 }
 
 const Post = (props:PostProps) => {
