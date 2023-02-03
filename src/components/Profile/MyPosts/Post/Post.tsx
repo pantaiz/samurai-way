@@ -20,7 +20,7 @@ const Post = (props:PostProps) => {
 
                 <div className={s.PostDescription}>{a.message}</div>
                 <div className={s.likes}>
-                    <span className="material-symbols-outlined">favorite</span><span >{a.likeCounts} </span>
+                    <span className="material-symbols-outlined">favorite</span><span className={s.LikeCounts}>{a.likeCounts} </span>
                 </div>
             </div>
         )
