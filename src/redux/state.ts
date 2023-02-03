@@ -4,8 +4,10 @@ export let state: StateType = {
     ProfileData: {
         MyPostsData: {
             PostData: [
-                {id: 1, message: "It\'s my first comment", likeCounts: 15},
-                {id: 2, message: "Hi, how are you? ", likeCounts: 20},
+                {id: 1, message: "1. Follow people you like by clicking on the ’+ Follow’ button to see their posts in your feed." +
+                        "2. Share your thoughts with others and gain a following." +
+                        "Happy Vogel to you!", likeCounts: 15},
+                {id: 2, message: "Nam malis menandri ea, facete debitis volumus est ut, commune placerat nominati ei sea. Labore alterum probatus no sed, ius ea quas iusto inermis, ex tantas populo nonumes nam. Quo ad verear copiosae gubergren, quis commodo est et. ", likeCounts: 20},
             ],
             Mypost: []
         },

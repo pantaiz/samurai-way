@@ -4,17 +4,19 @@ import Post from "./Post/Post";
 import {MyPostsData} from "../../../index";
 
 type MyPostsProps = {
-    myPostsData:MyPostsData
+    myPostsData: MyPostsData
 }
 
-const MyPosts = (props:MyPostsProps) => {
+const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.MyPosts}>
             My post
             <div>
-                <textarea></textarea>
-                <button>ADd post</button>
-                <div className={s.posts}>New Posts</div>
+                <div>ADD NEW POST
+                    <textarea></textarea>
+                    <button>ADd post</button>
+                </div>
+
                 <Post postData={props.myPostsData.PostData}/>
             </div>
         </div>

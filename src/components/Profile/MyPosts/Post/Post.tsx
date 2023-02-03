@@ -11,11 +11,16 @@ const Post = (props:PostProps) => {
     return <div>{props.postData.map(a => {
         return (
             <div className={s.item}>
-                <img alt={'avatar'}
-                     src={'https://i.pinimg.com/originals/dd/d7/00/ddd700a2c9a13680481c73e9b877028c.png'}/>
-                {a.message}
-                <div>
-                    <span>{a.likeCounts} likes</span>
+                <div className={s.Header}>
+                    <span className={s.AvaName}>
+                <img alt={'avatar'} src={'https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg'}/>
+                        <span className={s.Name}>Shay Jordon</span>
+                        <span className={s.Nick}>@Shay_Jordon</span></span>
+                </div>
+
+                <div className={s.PostDescription}>{a.message}</div>
+                <div className={s.likes}>
+                    <span className="material-symbols-outlined">favorite</span><span >{a.likeCounts} </span>
                 </div>
             </div>
         )

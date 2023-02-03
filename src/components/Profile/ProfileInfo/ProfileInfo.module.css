@@ -1,13 +1,76 @@
-.baner {
- padding-top: 10px;
+.Main{
+ font-family: 'Quicksand', sans-serif;
+
+ background: white;
+ border-radius: 10px;
+ box-shadow: 0px 5px 20px rgba(29, 33, 38, 0.03), 0px 1px 2px rgba(29, 33, 38, 0.1);
+
+}
+.Header{
+ justify-content: space-between;
+ padding: 20px 20px 10px 20px;
  display: flex;
- justify-content: center;
+ font-weight: 600;
+
 }
-.baner img{
- width: 100%;
- height: 200px;
+.Header img{
+ width: 80px;
+ height: 80px;
+ border-radius: 100%;
+ margin-right: 20px;
+
+}
+.AvaName{
+ display: flex;
+}
+.Name{
+ font-family: sans-serif;
+ font-weight: 600;
+}
+.Nick{
+ color: #6c757d;
+ padding-top: 5px;
+ font-size: 12px;
+ font-family: 'Quicksand', sans-serif;
+ font-weight: 500;
+}
+.button {
+ font-family: sans-serif;
+ height: 30px;
+ width: 80px;
+background: white;
  border-radius: 20px;
+ color: #2557c4;
+ font-weight: 300;
+ font-size: 12px;
+ line-height: 20px;
+ border: #2557c4 solid 1px;
+ margin-top: 15px;
+ margin-right: 20px;
 }
-.Ava{
- padding: 20px;
+
+.button:hover {
+ background: #2557c4;
+ color: white;
+}
+
+.button:active {
+ background: #3f628c;
+}
+.Description{
+ padding: 0 20px 20px 20px;
+ color: #6c757d;
+
+
+}
+
+.Follower{
+ display: flex;
+ padding: 0px 10px 10px 20px;
+ font-size: 14px;
+ color: #4e525b;
+
+}
+.Followers{
+ margin-right: 40px;
 }

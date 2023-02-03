@@ -2,9 +2,9 @@
     display: grid;
     width: 800px;
     margin: auto;
-    font-family: 'Amatic SC', cursive;
+    font-family: monospace;
+  /* font-family: 'Amatic SC', cursive;*/
 
-    /*font-family: 'Abril Fatface', cursive;*/
     grid-template-rows:80px 1fr;
     grid-template-columns: 3fr 10fr;
     grid-gap: 8px;
@@ -14,10 +14,8 @@
 }
 
 .app-wraper-content {
-    font-family: 'Abril Fatface', cursive;
+    font-family: sans-serif;
     width: auto;
-    border-radius: 20px;
-    background-color:#262828;
+    border-radius: 10px;
     grid-area: c;
-    color:#d1aa61;
 }

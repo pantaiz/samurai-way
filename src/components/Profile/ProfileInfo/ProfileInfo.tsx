@@ -3,13 +3,17 @@ import s from './ProfileInfo.module.css';
 
 export const ProfileInfo = () => {
     return (
-        <div>
-            <div className={s.baner}>
-                <img alt={'backround-image'}
-                     src={'https://i.pinimg.com/originals/59/0c/c5/590cc5993b65315e6e552eb16f7ad98c.jpg'}/>
+        <div className={s.Main}>
+            <div className={s.Header}>
+                    <span className={s.AvaName}>
+                <img alt={'avatar'} src={'https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg'}/>
+                        <span><div className={s.Name}>Shay Jordon</div>
+                        <div className={s.Nick}>@Shay_Jordon</div></span></span>
+                <button className={s.button}>+Follow</button>
             </div>
-            <div className={s.Ava}>
-                ava+description
+            <div className={s.Description}>The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature..</div>
+            <div className={s.Follower}><span className={s.Followers}>391k Followers</span>
+                <span className={s.Following}>30 Following</span>
             </div>
         </div>
     )
