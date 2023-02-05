@@ -6,6 +6,10 @@ import {PostData} from "../../../../index";
 type PostProps={
     postData:Array<PostData>
 }
+//Типизируем наши посты
+
+/**/
+
 
 const Post = (props:PostProps) => {
     return <div>{props.postData.map(a => {
@@ -13,9 +17,9 @@ const Post = (props:PostProps) => {
             <div className={s.item}>
                 <div className={s.Header}>
                     <span className={s.AvaName}>
-                <img alt={'avatar'} src={'https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg'}/>
-                        <span className={s.Name}>Shay Jordon</span>
-                        <span className={s.Nick}>@Shay_Jordon</span></span>
+                <img alt={'avatar'} src={a.avatar}/>
+                        <span className={s.Name}>{a.name}</span>
+                        <span className={s.Nick}>{a.nick}</span></span>
                 </div>
 
                 <div className={s.PostDescription}>{a.message}</div>

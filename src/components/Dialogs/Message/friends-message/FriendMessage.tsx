@@ -1,27 +1,28 @@
 import React from 'react'
 import s from './FriendMessage.module.css'
-import {MessageType} from "../Message";
+import {FriendMessageData} from "../../../../index";
 
 type FriendMessageProps = {
-    message: MessageType
+    message: Array<FriendMessageData>
 }
 
-// создать тип вместо any и отобразить приходящие данные
 export const FriendMessage = (props: FriendMessageProps) => {
-    return (
-        <div className={s.friendMessage}>
+    return (<>{props.message.map(a=>{return(
+
+
+        <div key={a.id} className={s.friendMessage}>
             <div className={s.friendText}>
                 <div className={s.friendName}>
-                    {props.message.user.name}
+                    {a.user.name}
                 </div>
                 <div className={s.friendMessageText}>
-                    {props.message.message.text}
+                    {a.message.text}
                 </div>
             </div>
             <div className={s.friendTime}>
-                {props.message.message.time}
+                {a.message.time}
             </div>
-        </div>
+        </div>)})}</>
     )
 }
 

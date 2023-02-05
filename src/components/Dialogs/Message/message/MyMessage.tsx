@@ -1,24 +1,24 @@
 import React from 'react'
 import s from './MyMessage.module.css'
-import {MessageType} from "../Message";
+import {MyMessageData} from "../../../../index";
 
 export type MessagePropsType = {
-    message:MessageType
+    message:Array<MyMessageData>
 }
 export const MyMessage = (props: MessagePropsType) => {
-    return (
-        <div className={s.message}>
+    return (<>{props.message.map(a=>{return(
+        <div key={a.id} className={s.message}>
                 <div className={s.text}>
                     <div className={s.name}>
-                        {props.message.user.name}
+                        {a.user.name}
                     </div>
                     <div className={s.messageText}>
-                        {props.message.message.text}
+                        {a.message.text}
                     </div>
                 </div>
             <div className={s.time}>
-                {props.message.message.time}
+                {a.message.time}
             </div>
-        </div>
+        </div>)})}</>
     )
 }

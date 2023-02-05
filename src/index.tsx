@@ -7,24 +7,58 @@ import { state } from './redux/state';
 export type  DialogsItemDataType = {
     id: number,
     name: string
+    avatar:string
 }//Типизируем наши входные диалоги
-export type  MessageDataType = {
+export type  MyMessageData = {
     id: number,
-    text: string
-}//Типизируем наши сообщения
+    user: {
+        name: string
+    },
+    message: {
+        text: string
+        time: string
+    },
+}
+export type MessageDataType={
+    friendMessage:Array<FriendMessageData>,
+    myMessage:Array<MyMessageData>
+}
+export type FriendMessageData = {
+    id: number,
+    user: {
+        name: string
+    },
+    message: {
+        text: string
+        time: string
+    },
+}
+//Типизируем наши сообщения
 export type DialogsDataType = {
-    messageData: Array<MessageDataType>,
+    messageData: MessageDataType,
     dialogsItemData: Array<DialogsItemDataType>
 }
 export type MyPostsData = {
     PostData: Array<PostData>,
-    Mypost: any[]
 }
 export type ProfileDataType = {
     MyPostsData: MyPostsData
+    ProfileInfo:ProfileinfoData
+}
+export type ProfileinfoData={
+    avatar:string,
+    id:number,
+    name:string,
+    nick:string,
+    description:string,
+    followers:number,
+    following:number,
 }
 export type PostData = {
     id: number,
+    avatar:string,
+    name:string,
+    nick:string
     message: string,
     likeCounts: number
 }//Типизируем наши посты

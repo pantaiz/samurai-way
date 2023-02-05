@@ -1,9 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react'
-import { message0 } from '../Message'
+import React from 'react'
 import s from './MessageSender.module.css'
 
-// компонента, которая тестирует вашу компоненту (не изменять, any не трогать)
-export const MessageSender = (props: any) => {
+export const MessageSender = () => {
 
     return (
         <>

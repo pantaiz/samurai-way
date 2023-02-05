@@ -38,4 +38,5 @@
 .dialogsItems{
    border-right: solid rgba(174, 174, 222, 0.5) 1px;
     display: grid;
+    align-content: start;
 }

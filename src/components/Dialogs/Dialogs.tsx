@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css';
 import {DialigsItem} from "./DialigsItem/DialigsItem";
 import { Message } from "./Message/Message";
-import {DialogsDataType} from "../../index";
+import {DialogsDataType, MessageDataType} from "../../index";
 
 
 export type DialogsProps={
