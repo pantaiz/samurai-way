@@ -3,10 +3,10 @@ import s from './AddPosts.module.css';
 
 
 export const AddPost = () => {
-    return(
+    return (
         <div className={s.Main}>
-            <div> <textarea className={s.textarea} placeholder={'What\'s new with you?'} ></textarea></div>
-           <div> <button className={s.button}>Publish</button></div>
+            <div className={s.textInput}><textarea className={s.textarea} placeholder={'What\'s new with you?'}></textarea></div>
+            <button className={s.button}>Publish</button>
         </div>
     )
 }

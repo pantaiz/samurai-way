@@ -50,7 +50,7 @@ export let state: StateType = {
                     }
                 },
                 {
-                    id: 0,
+                    id: 1,
                     user: {
                         name: 'Some Name',
                     },
@@ -59,7 +59,7 @@ export let state: StateType = {
                         time: '22:00',
                     }
                 }, {
-                    id: 0,
+                    id: 2,
                     user: {
                         name: 'Some Name',
                     },
@@ -80,7 +80,7 @@ export let state: StateType = {
                 },
             },
                 {
-                    id: 100,
+                    id: 101,
                     user: {
                         name: 'Friend Name',
                     },
@@ -90,8 +90,7 @@ export let state: StateType = {
                     },
                 }
             ]
-        }
-        ,
+        },
         dialogsItemData: [
             {id: 1,avatar:"https://sun6-23.userapi.com/s/v1/if1/xOb3RwJMBmprThflM08jZSDpC8_6sNBh_Q6gTNIwsECXl37ok2y7u9kvn2YT3dSs3_KdiC0Q.jpg?size=50x50&quality=96&crop=0,291,750,750&ava=1", name: "Dimych"},
             {id: 2,avatar:"https://sun9-15.userapi.com/impf/c639617/v639617557/8445/ZWJgwiW7Z5g.jpg?size=640x800&quality=96&sign=f0b3e281f3127933a8fc0df305f2c54e&type=album",  name: "Marharita"},
