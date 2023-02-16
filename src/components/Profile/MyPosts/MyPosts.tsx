@@ -6,12 +6,13 @@ import { AddPost } from "./AddPost/AddPost";
 
 type MyPostsProps = {
     myPostsData: MyPostsData
+    addPost:(postMessage: string)=>void
 }
 
 const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.MyPosts}>
-                <AddPost/>
+                <AddPost addPost={props.addPost}/>
                 <Post postData={props.myPostsData.PostData}/>
         </div>
     )

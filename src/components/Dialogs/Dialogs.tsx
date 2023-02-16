@@ -7,6 +7,7 @@ import {DialogsDataType, MessageDataType} from "../../index";
 
 export type DialogsProps={
     dialogsData:DialogsDataType
+
 }
 
 

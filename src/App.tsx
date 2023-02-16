@@ -12,23 +12,24 @@ import { StateType } from '.';
 
 type AppProps={
     state:StateType
+    addPost:(postMessage: string)=>void
 }
 
 function App(props:AppProps) {
     return (
-        <BrowserRouter>
+
             <div className={'app-wraper'}>
                 <Header/>
                 <Navbar/>
                 <div className={"app-wraper-content"}>
-                    <Route path={"/Profile"} render={() => <Profile profileData={props.state.ProfileData}/>} />
+                    <Route path={"/Profile"} render={() => <Profile addPost={props.addPost} profileData={props.state.ProfileData}/>} />
                     <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.DialogsData}/>} />
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
+
     );
 }
 

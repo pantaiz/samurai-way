@@ -1,4 +1,9 @@
 import {StateType} from "../index";
+import {v1} from "uuid";
+import {rerenderPost} from "../render";
+
+
+
 
 export let state: StateType = {
     ProfileData: {
@@ -15,7 +20,7 @@ export let state: StateType = {
         MyPostsData: {
             PostData: [
                 {
-                    id: 1,
+                    id: v1(),
                     avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
                     nick: "@Shay_Jordon", name: "Shay Jordon",
                     message: "1. Follow people you like by clicking on the ’+ Follow’ button to see their posts in your feed." +
@@ -23,7 +28,7 @@ export let state: StateType = {
                         "Happy Vogel to you!", likeCounts: 15
                 },
                 {
-                    id: 2,
+                    id: v1(),
                     avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
                     nick: "@Shay_Jordon",
                     name: "Shay Jordon",
@@ -92,13 +97,44 @@ export let state: StateType = {
             ]
         },
         dialogsItemData: [
-            {id: 1,avatar:"https://sun6-23.userapi.com/s/v1/if1/xOb3RwJMBmprThflM08jZSDpC8_6sNBh_Q6gTNIwsECXl37ok2y7u9kvn2YT3dSs3_KdiC0Q.jpg?size=50x50&quality=96&crop=0,291,750,750&ava=1", name: "Dimych"},
-            {id: 2,avatar:"https://sun9-15.userapi.com/impf/c639617/v639617557/8445/ZWJgwiW7Z5g.jpg?size=640x800&quality=96&sign=f0b3e281f3127933a8fc0df305f2c54e&type=album",  name: "Marharita"},
-            {id: 3,avatar:"https://static3.vivoo.ru/datas/photos/800x800/fb/12/628a49c7c781f76c8cf4b7301299.jpg?0",  name: "Roma"},
-            {id: 4,avatar:"https://avatars.steamstatic.com/ef369244316f0cf89ce5aa02e94979d3a082a8c6_medium.jpg",  name: "Vitalya"},
-            {id: 5,avatar:"https://i08.fotocdn.net/s122/21f4308456162c17/user_m/2796889876.jpg",  name: "Artem"},
-            {id: 6,avatar:"https://i08.fotocdn.net/s122/21f4308456162c17/user_m/2796889876.jpg",  name: "Jenya"},
+            {
+                id: 1,
+                avatar: "https://sun6-23.userapi.com/s/v1/if1/xOb3RwJMBmprThflM08jZSDpC8_6sNBh_Q6gTNIwsECXl37ok2y7u9kvn2YT3dSs3_KdiC0Q.jpg?size=50x50&quality=96&crop=0,291,750,750&ava=1",
+                name: "Dimych"
+            },
+            {
+                id: 2,
+                avatar: "https://sun9-15.userapi.com/impf/c639617/v639617557/8445/ZWJgwiW7Z5g.jpg?size=640x800&quality=96&sign=f0b3e281f3127933a8fc0df305f2c54e&type=album",
+                name: "Marharita"
+            },
+            {
+                id: 3,
+                avatar: "https://static3.vivoo.ru/datas/photos/800x800/fb/12/628a49c7c781f76c8cf4b7301299.jpg?0",
+                name: "Roma"
+            },
+            {
+                id: 4,
+                avatar: "https://avatars.steamstatic.com/ef369244316f0cf89ce5aa02e94979d3a082a8c6_medium.jpg",
+                name: "Vitalya"
+            },
+            {id: 5, avatar: "https://i08.fotocdn.net/s122/21f4308456162c17/user_m/2796889876.jpg", name: "Artem"},
+            {id: 6, avatar: "https://i08.fotocdn.net/s122/21f4308456162c17/user_m/2796889876.jpg", name: "Jenya"},
         ]
 
     },
+}
+
+
+export const addPost = (postMessage: string) => {
+    let newPost = {
+        id: v1(),
+        avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
+        nick: "@Shay_Jordon",
+        name: "Shay Jordon",
+        message:postMessage,
+        likeCounts: 0
+    }
+
+    state.ProfileData.MyPostsData.PostData.unshift(newPost)
+    rerenderPost(state)
 }
