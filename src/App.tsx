@@ -10,9 +10,11 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import { StateType } from '.';
 
+
 type AppProps={
     state:StateType
     addPost:(postMessage: string)=>void
+    updateNewPostTexts:(postMessage: string)=>void
 }
 
 function App(props:AppProps) {
@@ -22,7 +24,7 @@ function App(props:AppProps) {
                 <Header/>
                 <Navbar/>
                 <div className={"app-wraper-content"}>
-                    <Route path={"/Profile"} render={() => <Profile addPost={props.addPost} profileData={props.state.ProfileData}/>} />
+                    <Route path={"/Profile"} render={() => <Profile updateNewPostTexts={props.updateNewPostTexts} addPost={props.addPost} profileData={props.state.ProfileData}/>} />
                     <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.DialogsData}/>} />
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>

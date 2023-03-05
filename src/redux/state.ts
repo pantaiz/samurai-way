@@ -39,6 +39,9 @@ export let state: StateType = {
                 },
 
             ],
+            AddPostData: {
+                newPostText:'asd'
+            }
         },
     },
     DialogsData: {
@@ -134,7 +137,11 @@ export const addPost = (postMessage: string) => {
         message:postMessage,
         likeCounts: 0
     }
-
     state.ProfileData.MyPostsData.PostData.unshift(newPost)
     rerenderPost(state)
-}
+        }
+
+export const updateNewPostTexts = (newPostText: string) => {
+    state.ProfileData.MyPostsData.AddPostData.newPostText=newPostText
+    rerenderPost(state)
+    }
