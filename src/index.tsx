@@ -6,14 +6,16 @@ import {state} from './redux/state';
 import {BrowserRouter} from "react-router-dom";
 import {rerenderPost} from "./render";
 
-
+export type messageSenderType={
+    newMyMessage:string
+}
 export type  DialogsItemDataType = {
     id: number,
     name: string
     avatar: string
 }//Типизируем наши входные диалоги
 export type  MyMessageData = {
-    id: number,
+    id: string,
     user: {
         name: string
     },
@@ -25,6 +27,7 @@ export type  MyMessageData = {
 export type MessageDataType = {
     friendMessage: Array<FriendMessageData>,
     myMessage: Array<MyMessageData>
+    messageSender:messageSenderType
 }
 export type FriendMessageData = {
     id: number,

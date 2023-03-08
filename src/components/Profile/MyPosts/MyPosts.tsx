@@ -8,7 +8,6 @@ type MyPostsProps = {
     myPostsData: MyPostsData
     addPost:()=>void
     updateNewPostTexts:(newPostMessage: string)=>void
-
 }
 
 const MyPosts = (props: MyPostsProps) => {

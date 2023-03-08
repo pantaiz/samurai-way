@@ -1,8 +1,7 @@
 import {StateType} from "../index";
 import {v1} from "uuid";
 import {rerenderPost} from "../render";
-
-
+import {MessageSender} from "../components/Dialogs/Message/message-sender/MessageSender";
 
 
 export let state: StateType = {
@@ -40,7 +39,7 @@ export let state: StateType = {
 
             ],
             AddPostData: {
-                newPostText:'asd'
+                newPostText: 'asd'
             }
         },
     },
@@ -48,7 +47,7 @@ export let state: StateType = {
         messageData: {
             myMessage: [
                 {
-                    id: 0,
+                    id: v1(),
                     user: {
                         name: 'Some Name',
                     },
@@ -58,7 +57,7 @@ export let state: StateType = {
                     }
                 },
                 {
-                    id: 1,
+                    id: v1(),
                     user: {
                         name: 'Some Name',
                     },
@@ -67,7 +66,7 @@ export let state: StateType = {
                         time: '22:00',
                     }
                 }, {
-                    id: 2,
+                    id: v1(),
                     user: {
                         name: 'Some Name',
                     },
@@ -77,16 +76,17 @@ export let state: StateType = {
                     }
                 }
             ],
-            friendMessage: [{
-                id: 100,
-                user: {
-                    name: 'Friend Name',
+            friendMessage: [
+                {
+                    id: 100,
+                    user: {
+                        name: 'Friend Name',
+                    },
+                    message: {
+                        text: 'extsome textsomsome textsome textsome texe textsome textsome textsomsome textsome textsome texe textsome t', // можно менять
+                        time: '22:00',
+                    },
                 },
-                message: {
-                    text: 'extsome textsomsome textsome textsome texe textsome textsome textsomsome textsome textsome texe textsome t', // можно менять
-                    time: '22:00',
-                },
-            },
                 {
                     id: 101,
                     user: {
@@ -97,7 +97,10 @@ export let state: StateType = {
                         time: '22:00',
                     },
                 }
-            ]
+            ],
+            messageSender: {
+                newMyMessage: ''
+            }
         },
         dialogsItemData: [
             {
@@ -128,21 +131,41 @@ export let state: StateType = {
 }
 
 
+export const updatedNewMyMessage = (newMyMessage: string) => {
+    state.DialogsData.messageData.messageSender.newMyMessage = newMyMessage
+    rerenderPost(state)
+}
+export const addNewMyMessage = () => {
+    let NewMyMessage = {
+        id: v1(),
+        user: {
+            name: 'Some Name',
+        },
+        message: {
+            text:  state.DialogsData.messageData.messageSender.newMyMessage,
+            time: '22:00',
+        }
+    }
+    state.DialogsData.messageData.myMessage.push(NewMyMessage)
+    state.DialogsData.messageData.messageSender.newMyMessage=''
+    rerenderPost(state)
+}
+
 export const addPost = () => {
     let newPost = {
         id: v1(),
         avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
         nick: "@Shay_Jordon",
         name: "Shay Jordon",
-        message:state.ProfileData.MyPostsData.AddPostData.newPostText,
+        message: state.ProfileData.MyPostsData.AddPostData.newPostText,
         likeCounts: 0
     }
     state.ProfileData.MyPostsData.PostData.unshift(newPost)
-    state.ProfileData.MyPostsData.AddPostData.newPostText=''
+    state.ProfileData.MyPostsData.AddPostData.newPostText = ''
     rerenderPost(state)
-        }
+}
 
 export const updateNewPostTexts = (newPostText: string) => {
-    state.ProfileData.MyPostsData.AddPostData.newPostText=newPostText
+    state.ProfileData.MyPostsData.AddPostData.newPostText = newPostText
     rerenderPost(state)
-    }
+}

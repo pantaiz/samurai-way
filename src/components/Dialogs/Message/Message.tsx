@@ -8,13 +8,16 @@ import {MessageDataType} from "../../../index";
 
 export type MessageProps = {
     messageData:MessageDataType
+    addNewMyMessage: () => void
+    updatedNewMyMessage: (newMyMessage: string) => void
 }
 export const Message = (props: MessageProps) => {
     return (
         <div id={'messages'} className={s.message}>
-                    <MyMessage message={props.messageData.myMessage}/>
+
                     <FriendMessage message={props.messageData.friendMessage}/>
-                <MessageSender/>
+            <MyMessage message={props.messageData.myMessage}/>
+                <MessageSender messageSenderData={props.messageData.messageSender} updatedNewMyMessage={props.updatedNewMyMessage} addNewMyMessage={props.addNewMyMessage}/>
         </div>
     )
 }
