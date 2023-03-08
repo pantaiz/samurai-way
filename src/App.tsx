@@ -13,7 +13,7 @@ import { StateType } from '.';
 
 type AppProps={
     state:StateType
-    addPost:(postMessage: string)=>void
+    addPost:()=>void
     updateNewPostTexts:(postMessage: string)=>void
 }
 

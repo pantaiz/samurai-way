@@ -128,16 +128,17 @@ export let state: StateType = {
 }
 
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost = {
         id: v1(),
         avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
         nick: "@Shay_Jordon",
         name: "Shay Jordon",
-        message:postMessage,
+        message:state.ProfileData.MyPostsData.AddPostData.newPostText,
         likeCounts: 0
     }
     state.ProfileData.MyPostsData.PostData.unshift(newPost)
+    state.ProfileData.MyPostsData.AddPostData.newPostText=''
     rerenderPost(state)
         }
 

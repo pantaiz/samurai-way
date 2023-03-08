@@ -6,7 +6,7 @@ import {ProfileDataType, ProfileinfoData} from "../../index";
 
 type ProfileProps={
     profileData:ProfileDataType
-    addPost:(postMessage: string)=>void
+    addPost:()=>void
     updateNewPostTexts:(postMessage: string)=>void
 }
 
