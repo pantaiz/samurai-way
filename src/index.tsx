@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {addPost, addNewMyMessage, updatedNewMyMessage, updateNewPostTexts, subscribe} from "./redux/state";
 import './index.css';
-import {state} from './redux/state';
+
 import {BrowserRouter} from "react-router-dom";
+import {store} from "./redux/state";
 
 
-export type messageSenderType={
-    newMyMessage:string
+export type messageSenderType = {
+    newMyMessage: string
 }
 export type  DialogsItemDataType = {
     id: number,
@@ -28,7 +28,7 @@ export type  MyMessageData = {
 export type MessageDataType = {
     friendMessage: Array<FriendMessageData>,
     myMessage: Array<MyMessageData>
-    messageSender:messageSenderType
+    messageSender: messageSenderType
 }
 export type FriendMessageData = {
     id: number,
@@ -45,12 +45,12 @@ export type DialogsDataType = {
     messageData: MessageDataType,
     dialogsItemData: Array<DialogsItemDataType>
 }
-export type AddPostData={
-    newPostText:string,
+export type AddPostData = {
+    newPostText: string,
 }
 export type MyPostsData = {
     PostData: Array<PostData>,
-    AddPostData:AddPostData
+    AddPostData: AddPostData
 }
 export type ProfileDataType = {
     MyPostsData: MyPostsData
@@ -78,15 +78,26 @@ export type StateType = {
     DialogsData: DialogsDataType,
 
 }
+export type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    updatedNewMyMessage: (newMyMessage: string) => void
+    addNewMyMessage: () => void
+    addPost: () => void
+    updateNewPostTexts: (newPostText: string) => void
+    subscribe: (observer: (state: StateType) => void) => void
+    rerenderPost: (state: StateType) => void
+}
 
-
-let rerenderPost =(states:StateType) => {
+let rerenderPost = (store: StoreType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App updatedNewMyMessage={updatedNewMyMessage} addNewMyMessage={addNewMyMessage}
-                 updateNewPostTexts={updateNewPostTexts} state={states} addPost={addPost}/>
+            <App updatedNewMyMessage={store.updatedNewMyMessage.bind(store)}
+                 addNewMyMessage={store.addNewMyMessage.bind(store)}
+                 updateNewPostTexts={store.updateNewPostTexts.bind(store)}
+                 state={store.getState()} addPost={store.addPost.bind(store)}/>
         </BrowserRouter>,
         document.getElementById('root'))
 }
- rerenderPost(state)
- subscribe(rerenderPost)
+rerenderPost(store)
+//store.subscribe(rerenderPost)
