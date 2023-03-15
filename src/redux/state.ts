@@ -1,9 +1,9 @@
 import {StateType} from "../index";
 import {v1} from "uuid";
-import {rerenderPost} from "../render";
-import {MessageSender} from "../components/Dialogs/Message/message-sender/MessageSender";
 
-
+let rerenderPost=(state:StateType)=>{
+    console.log('123')
+}
 export let state: StateType = {
     ProfileData: {
         ProfileInfo: {
@@ -168,4 +168,8 @@ export const addPost = () => {
 export const updateNewPostTexts = (newPostText: string) => {
     state.ProfileData.MyPostsData.AddPostData.newPostText = newPostText
     rerenderPost(state)
+}
+
+export const subscribe = (observer:(state:StateType)=>void) => {
+    rerenderPost=observer
 }

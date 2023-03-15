@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+import App from "./App";
+import {addPost, addNewMyMessage, updatedNewMyMessage, updateNewPostTexts, subscribe} from "./redux/state";
 import './index.css';
-import App from './App';
 import {state} from './redux/state';
 import {BrowserRouter} from "react-router-dom";
-import {rerenderPost} from "./render";
+
 
 export type messageSenderType={
     newMyMessage:string
@@ -79,4 +80,13 @@ export type StateType = {
 }
 
 
+let rerenderPost =(states:StateType) => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App updatedNewMyMessage={updatedNewMyMessage} addNewMyMessage={addNewMyMessage}
+                 updateNewPostTexts={updateNewPostTexts} state={states} addPost={addPost}/>
+        </BrowserRouter>,
+        document.getElementById('root'))
+}
  rerenderPost(state)
+ subscribe(rerenderPost)
