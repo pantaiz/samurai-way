@@ -85,11 +85,11 @@ export type StoreType = {
     addNewMyMessage: () => void
     addPost: () => void
     updateNewPostTexts: (newPostText: string) => void
-    subscribe: (observer: (state: StateType) => void) => void
-    rerenderPost: (state: StateType) => void
+    subscribe: (callback: () => void) => void
+    _onChange: () => void
 }
 
-let rerenderPost = (store: StoreType) => {
+let rerenderPost = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App updatedNewMyMessage={store.updatedNewMyMessage.bind(store)}
@@ -99,5 +99,5 @@ let rerenderPost = (store: StoreType) => {
         </BrowserRouter>,
         document.getElementById('root'))
 }
-rerenderPost(store)
-//store.subscribe(rerenderPost)
+rerenderPost()
+store.subscribe(rerenderPost)

@@ -127,15 +127,15 @@ export const store:StoreType ={
 
         },
     },
-    getState(){
-        return this._state
-    },
-    rerenderPost(state:StateType){
+    _onChange(){
         console.log('123')
     },
     updatedNewMyMessage  (newMyMessage: string) {
         this._state.DialogsData.messageData.messageSender.newMyMessage = newMyMessage
-        this.rerenderPost(store._state)
+        this._onChange()
+    },
+    getState(){
+        return this._state
     },
     addNewMyMessage  ()  {
         let NewMyMessage = {
@@ -150,7 +150,7 @@ export const store:StoreType ={
         }
         this._state.DialogsData.messageData.myMessage.push(NewMyMessage)
         this._state.DialogsData.messageData.messageSender.newMyMessage=''
-        this.rerenderPost(this._state)
+        this._onChange()
     },
     addPost  ()  {
         let newPost = {
@@ -163,14 +163,14 @@ export const store:StoreType ={
         }
         this._state.ProfileData.MyPostsData.PostData.unshift(newPost)
         this._state.ProfileData.MyPostsData.AddPostData.newPostText = ''
-        this.rerenderPost(this._state)
+        this._onChange()
     },
     updateNewPostTexts  (newPostText: string)  {
         this._state.ProfileData.MyPostsData.AddPostData.newPostText = newPostText
-        this.rerenderPost(this._state)
+        this._onChange()
     },
-    subscribe  (observer:(state:StateType)=>void)  {
-        this.rerenderPost=observer
+    subscribe  (callback)  {
+        this._onChange=callback
     }
 }
 /*
