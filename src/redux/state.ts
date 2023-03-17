@@ -130,12 +130,17 @@ export const store:StoreType ={
     _onChange(){
         console.log('123')
     },
-    updatedNewMyMessage  (newMyMessage: string) {
-        this._state.DialogsData.messageData.messageSender.newMyMessage = newMyMessage
-        this._onChange()
+
+    subscribe  (callback)  {
+        this._onChange=callback
     },
     getState(){
         return this._state
+    },
+
+    updatedNewMyMessage  (newMyMessage: string) {
+        this._state.DialogsData.messageData.messageSender.newMyMessage = newMyMessage
+        this._onChange()
     },
     addNewMyMessage  ()  {
         let NewMyMessage = {
@@ -169,8 +174,9 @@ export const store:StoreType ={
         this._state.ProfileData.MyPostsData.AddPostData.newPostText = newPostText
         this._onChange()
     },
-    subscribe  (callback)  {
-        this._onChange=callback
+
+    dispatch(actrion){
+
     }
 }
 /*
