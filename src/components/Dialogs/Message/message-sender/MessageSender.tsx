@@ -1,22 +1,23 @@
 import React from 'react'
 import s from './MessageSender.module.css'
-import {messageSenderType} from "../../../../index";
+import {dispatchType, messageSenderType} from "../../../../index";
 
 
 export type MessageSenderProps = {
-    addNewMyMessage: () => void
+
     messageSenderData: messageSenderType
-    updatedNewMyMessage: (newMyMessage: string) => void
+    dispatch:dispatchType
 }
 export const MessageSender = (props: MessageSenderProps) => {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const onChangeHandler = () => {
-        newMessageElement.current && props.updatedNewMyMessage(newMessageElement.current?.value)
+        newMessageElement.current &&props.dispatch({type:"updated-New-My-Message",newMyMessage:newMessageElement.current?.value})
     }
 
     const sendMessage = () => {
-        props.addNewMyMessage()
+
+        props.dispatch({type:"add-New-My-Message"})
     }
     return (
         <>

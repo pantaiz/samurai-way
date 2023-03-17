@@ -1,7 +1,7 @@
 import {StateType, StoreType} from "../index";
 import {v1} from "uuid";
 
-export const store:StoreType ={
+export const store: StoreType = {
     _state: {
         ProfileData: {
             ProfileInfo: {
@@ -127,37 +127,37 @@ export const store:StoreType ={
 
         },
     },
-    _onChange(){
+    _onChange() {
         console.log('123')
     },
 
-    subscribe  (callback)  {
-        this._onChange=callback
+    subscribe(callback) {
+        this._onChange = callback
     },
-    getState(){
+    getState() {
         return this._state
     },
 
-    updatedNewMyMessage  (newMyMessage: string) {
+/*    updatedNewMyMessage(newMyMessage: string) {
         this._state.DialogsData.messageData.messageSender.newMyMessage = newMyMessage
         this._onChange()
     },
-    addNewMyMessage  ()  {
+    addNewMyMessage() {
         let NewMyMessage = {
             id: v1(),
             user: {
                 name: 'Some Name',
             },
             message: {
-                text:  store._state.DialogsData.messageData.messageSender.newMyMessage,
+                text: store._state.DialogsData.messageData.messageSender.newMyMessage,
                 time: '22:00',
             }
         }
         this._state.DialogsData.messageData.myMessage.push(NewMyMessage)
-        this._state.DialogsData.messageData.messageSender.newMyMessage=''
+        this._state.DialogsData.messageData.messageSender.newMyMessage = ''
         this._onChange()
     },
-    addPost  ()  {
+    addPost() {
         let newPost = {
             id: v1(),
             avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
@@ -170,13 +170,45 @@ export const store:StoreType ={
         this._state.ProfileData.MyPostsData.AddPostData.newPostText = ''
         this._onChange()
     },
-    updateNewPostTexts  (newPostText: string)  {
+    updateNewPostTexts(newPostText: string) {
         this._state.ProfileData.MyPostsData.AddPostData.newPostText = newPostText
         this._onChange()
-    },
+    },*/
 
-    dispatch(actrion){
-
+    dispatch(actrion) {
+        if (actrion.type === 'updated-New-My-Message') {
+            this._state.DialogsData.messageData.messageSender.newMyMessage = actrion.newMyMessage
+            this._onChange()
+        } else if (actrion.type === 'add-New-My-Message') {
+            let NewMyMessage = {
+                id: v1(),
+                user: {
+                    name: 'Some Name',
+                },
+                message: {
+                    text: store._state.DialogsData.messageData.messageSender.newMyMessage,
+                    time: '22:00',
+                }
+            }
+            this._state.DialogsData.messageData.myMessage.push(NewMyMessage)
+            this._state.DialogsData.messageData.messageSender.newMyMessage = ''
+            this._onChange()
+        } else if (actrion.type === 'add-Post') {
+            let newPost = {
+                id: v1(),
+                avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
+                nick: "@Shay_Jordon",
+                name: "Shay Jordon",
+                message: store._state.ProfileData.MyPostsData.AddPostData.newPostText,
+                likeCounts: 0
+            }
+            this._state.ProfileData.MyPostsData.PostData.unshift(newPost)
+            this._state.ProfileData.MyPostsData.AddPostData.newPostText = ''
+            this._onChange()
+        } else if (actrion.type === 'update-New-Post-Texts') {
+            this._state.ProfileData.MyPostsData.AddPostData.newPostText = actrion.newPostText
+            this._onChange()
+        }
     }
 }
 /*

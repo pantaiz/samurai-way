@@ -65,6 +65,24 @@ export type ProfileinfoData = {
     followers: number,
     following: number,
 }
+export type ActtionType = updatedNewMyMessageType | addNewMyMessageType | addPostType | updateNewPostTextsType
+export type updatedNewMyMessageType = {
+    type: 'updated-New-My-Message'
+    newMyMessage: string
+}
+export type addNewMyMessageType = {
+    type: 'add-New-My-Message'
+}
+export type addPostType = {
+    type: 'add-Post'
+
+}
+export type updateNewPostTextsType = {
+    type: 'update-New-Post-Texts'
+    newPostText: string
+}
+
+export type dispatchType=(actrion: ActtionType) => void
 export type PostData = {
     id: string,
     avatar: string,
@@ -81,21 +99,21 @@ export type StateType = {
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    updatedNewMyMessage: (newMyMessage: string) => void
+    subscribe: (callback: () => void) => void
+    /*updatedNewMyMessage: (newMyMessage: string) => void
     addNewMyMessage: () => void
     addPost: () => void
-    updateNewPostTexts: (newPostText: string) => void
-    subscribe: (callback: () => void) => void
+    updateNewPostTexts: (newPostText: string) => void*/
+
     _onChange: () => void
+    dispatch: dispatchType
 }
 
 let rerenderPost = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App updatedNewMyMessage={store.updatedNewMyMessage.bind(store)}
-                 addNewMyMessage={store.addNewMyMessage.bind(store)}
-                 updateNewPostTexts={store.updateNewPostTexts.bind(store)}
-                 state={store.getState()} addPost={store.addPost.bind(store)}/>
+            <App dispatch={store.dispatch.bind(store)}
+                 state={store.getState()}/>
         </BrowserRouter>,
         document.getElementById('root'))
 }
