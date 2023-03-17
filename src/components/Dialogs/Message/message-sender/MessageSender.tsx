@@ -1,23 +1,25 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 import s from './MessageSender.module.css'
 import {dispatchType, messageSenderType} from "../../../../index";
+import {addNewMyMessageActionCreator, updatedNewMyMessageActionCreator} from "../../../../redux/state";
 
 
 export type MessageSenderProps = {
 
     messageSenderData: messageSenderType
-    dispatch:dispatchType
+    dispatch: dispatchType
 }
 export const MessageSender = (props: MessageSenderProps) => {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    const onChangeHandler = () => {
-        newMessageElement.current &&props.dispatch({type:"updated-New-My-Message",newMyMessage:newMessageElement.current?.value})
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const action = updatedNewMyMessageActionCreator(e.currentTarget.value)
+        props.dispatch(action)
     }
 
     const sendMessage = () => {
-
-        props.dispatch({type:"add-New-My-Message"})
+        const action = addNewMyMessageActionCreator()
+        props.dispatch(action)
     }
     return (
         <>

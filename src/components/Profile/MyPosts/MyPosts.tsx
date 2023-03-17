@@ -19,4 +19,5 @@ const MyPosts = (props: MyPostsProps) => {
     )
 
 }
+
 export default MyPosts

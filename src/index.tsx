@@ -100,11 +100,6 @@ export type StoreType = {
     _state: StateType
     getState: () => StateType
     subscribe: (callback: () => void) => void
-    /*updatedNewMyMessage: (newMyMessage: string) => void
-    addNewMyMessage: () => void
-    addPost: () => void
-    updateNewPostTexts: (newPostText: string) => void*/
-
     _onChange: () => void
     dispatch: dispatchType
 }

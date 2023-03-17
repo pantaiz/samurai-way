@@ -1,6 +1,7 @@
 import React, {useRef, TextareaHTMLAttributes, LegacyRef, ChangeEvent} from "react";
 import s from './AddPosts.module.css';
-import {AddPostData, dispatchType} from "../../../../index";
+import {AddPostData, addPostType, dispatchType, updateNewPostTextsType} from "../../../../index";
+import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/state";
 
 
 type AddPostPtopsType = {
@@ -12,10 +13,12 @@ type AddPostPtopsType = {
 export const AddPost = (props: AddPostPtopsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
-        newPostElement.current?.value &&props.dispatch({type:"add-Post"})
+        const action=AddPostActionCreator()
+        newPostElement.current?.value &&props.dispatch(action)
     }
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type:"update-New-Post-Texts",newPostText:e.currentTarget.value})
+        const action=updateNewPostTextsActionCreator(e.currentTarget.value)
+        props.dispatch(action)
     }
     return (
         <div className={s.Main}>
