@@ -44,7 +44,7 @@ export const store: StoreType = {
 
                 ],
                 AddPostData: {
-                    newPostText: 'asd'
+                    newPostText: ''
                 }
             },
         },
