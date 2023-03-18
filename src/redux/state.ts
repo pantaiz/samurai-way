@@ -7,8 +7,9 @@ import {
     updateNewPostTextsType
 } from "../index";
 import {v1} from "uuid";
-import profileReducer from "./profile-reducer";
-import dialogReducer from "./dialog-reducer";
+import {profileReducer} from "./profile-reducer";
+import { dialogReducer } from "./dialog-reducer";
+
 
 export const store: StoreType = {
     _state: {
@@ -137,7 +138,7 @@ export const store: StoreType = {
         },
     },
     _onChange() {
-        console.log('123')
+
     },
 
     subscribe(callback) {
@@ -148,8 +149,9 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        this._state.ProfileData=profileReducer(this._state.ProfileData,action)
-        this._state.DialogsData=dialogReducer(this._state.DialogsData,action)
+        this._state.ProfileData=profileReducer(this._state.ProfileData,action);
+        this._state.DialogsData=dialogReducer(this._state.DialogsData,action);
+        this._onChange()
     }
 }
 

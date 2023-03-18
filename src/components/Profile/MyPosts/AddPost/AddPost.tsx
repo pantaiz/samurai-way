@@ -1,6 +1,6 @@
-import React, {useRef, TextareaHTMLAttributes, LegacyRef, ChangeEvent} from "react";
+import React, { ChangeEvent} from "react";
 import s from './AddPosts.module.css';
-import {AddPostData, addPostType, dispatchType, updateNewPostTextsType} from "../../../../index";
+import {AddPostData, dispatchType} from "../../../../index";
 import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/profile-reducer";
 
 

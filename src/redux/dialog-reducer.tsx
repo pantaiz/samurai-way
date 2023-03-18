@@ -1,8 +1,9 @@
 import {v1} from "uuid";
 import {ActtionType, addNewMyMessageType, DialogsDataType, updatedNewMyMessageType} from "../index";
 
-const dialogReducer:(state:DialogsDataType, action:ActtionType)=>DialogsDataType = (state, action) => {
+export const dialogReducer:(state:DialogsDataType, action:ActtionType)=>DialogsDataType = (state, action) => {
     switch (action.type) {
+
         case 'updated-New-My-Message':
             state.messageData.messageSender.newMyMessage = action.newMyMessage
             return state
@@ -30,5 +31,3 @@ export const updatedNewMyMessageActionCreator:(newMyMessage:string)=>updatedNewM
 export const addNewMyMessageActionCreator:(()=>addNewMyMessageType) = () => {
     return  {type:"add-New-My-Message"}
 }
-
-export default dialogReducer

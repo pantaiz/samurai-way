@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {ActtionType, addPostType, ProfileDataType, updateNewPostTextsType} from "../index";
 
-const profileReducer :(state:ProfileDataType, action:ActtionType)=> ProfileDataType =(state,action) => {
+export const profileReducer :(state:ProfileDataType, action:ActtionType)=> ProfileDataType =(state,action) => {
     switch (action.type) {
         case 'add-Post':
             let newPost = {
@@ -28,4 +28,3 @@ export const updateNewPostTextsActionCreator:(newPostText:string)=>updateNewPost
 export const AddPostActionCreator:()=>addPostType = () => {
     return  {type:"add-Post"}
 }
-export default profileReducer
