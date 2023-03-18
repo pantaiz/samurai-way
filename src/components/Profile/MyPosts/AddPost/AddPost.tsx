@@ -1,7 +1,7 @@
 import React, {useRef, TextareaHTMLAttributes, LegacyRef, ChangeEvent} from "react";
 import s from './AddPosts.module.css';
 import {AddPostData, addPostType, dispatchType, updateNewPostTextsType} from "../../../../index";
-import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/state";
+import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/profile-reducer";
 
 
 type AddPostPtopsType = {

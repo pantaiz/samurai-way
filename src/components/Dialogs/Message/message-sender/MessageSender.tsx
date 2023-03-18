@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react'
 import s from './MessageSender.module.css'
 import {dispatchType, messageSenderType} from "../../../../index";
-import {addNewMyMessageActionCreator, updatedNewMyMessageActionCreator} from "../../../../redux/state";
+import {addNewMyMessageActionCreator, updatedNewMyMessageActionCreator} from "../../../../redux/dialog-reducer";
+
 
 
 export type MessageSenderProps = {

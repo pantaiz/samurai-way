@@ -7,6 +7,8 @@ import {
     updateNewPostTextsType
 } from "../index";
 import {v1} from "uuid";
+import profileReducer from "./profile-reducer";
+import dialogReducer from "./dialog-reducer";
 
 export const store: StoreType = {
     _state: {
@@ -145,51 +147,9 @@ export const store: StoreType = {
         return this._state
     },
 
-    dispatch(actrion) {
-        if (actrion.type === 'updated-New-My-Message') {
-            this._state.DialogsData.messageData.messageSender.newMyMessage = actrion.newMyMessage
-            this._onChange()
-        } else if (actrion.type === 'add-New-My-Message') {
-            let NewMyMessage = {
-                id: v1(),
-                user: {
-                    name: 'Some Name',
-                },
-                message: {
-                    text: store._state.DialogsData.messageData.messageSender.newMyMessage,
-                    time: '22:00',
-                }
-            }
-            this._state.DialogsData.messageData.myMessage.push(NewMyMessage)
-            this._state.DialogsData.messageData.messageSender.newMyMessage = ''
-            this._onChange()
-        } else if (actrion.type === 'add-Post') {
-            let newPost = {
-                id: v1(),
-                avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
-                nick: "@Shay_Jordon",
-                name: "Shay Jordon",
-                message: store._state.ProfileData.MyPostsData.AddPostData.newPostText,
-                likeCounts: 0
-            }
-            this._state.ProfileData.MyPostsData.PostData.unshift(newPost)
-            this._state.ProfileData.MyPostsData.AddPostData.newPostText = ''
-            this._onChange()
-        } else if (actrion.type === 'update-New-Post-Texts') {
-            this._state.ProfileData.MyPostsData.AddPostData.newPostText = actrion.newPostText
-            this._onChange()
-        }
+    dispatch(action) {
+        this._state.ProfileData=profileReducer(this._state.ProfileData,action)
+        this._state.DialogsData=dialogReducer(this._state.DialogsData,action)
     }
 }
-export const updateNewPostTextsActionCreator:(newPostText:string)=>updateNewPostTextsType = (newPostText) => {
-    return  {type:"update-New-Post-Texts",newPostText:newPostText}
-}
-export const AddPostActionCreator:()=>addPostType = () => {
-    return  {type:"add-Post"}
-}
-export const updatedNewMyMessageActionCreator:(newMyMessage:string)=>updatedNewMyMessageType = (newMyMessage) => {
-    return  {type:"updated-New-My-Message",newMyMessage:newMyMessage}
-}
-export const addNewMyMessageActionCreator:(()=>addNewMyMessageType) = () => {
-    return  {type:"add-New-My-Message"}
-}
+
