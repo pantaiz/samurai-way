@@ -8,11 +8,12 @@ import { Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {dispatchType, StateType} from '.';
+import {dispatchType, stateType, StateType} from '.';
+import {AppStateType} from "./redux/redux-store";
 
 
 type AppProps={
-    state:StateType
+    state:AppStateType
     dispatch:dispatchType
 }
 
@@ -23,8 +24,8 @@ function App(props:AppProps) {
                 <Header/>
                 <Navbar/>
                 <div className={"app-wraper-content"}>
-                    <Route path={"/Profile"} render={() => <Profile dispatch={props.dispatch} profileData={props.state.ProfileData}/>} />
-                    <Route path={"/dialogs"} render={() => <Dialogs dispatch={props.dispatch} dialogsData={props.state.DialogsData}/>} />
+                    <Route path={"/Profile"} render={() => <Profile dispatch={props.dispatch} profileData={props.state.profileReducer}/>} />
+                    <Route path={"/dialogs"} render={() => <Dialogs dispatch={props.dispatch} dialogsData={props.state.dialogReducer}/>} />
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>

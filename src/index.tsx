@@ -4,7 +4,7 @@ import App from "./App";
 import './index.css';
 
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/state";
+import {store} from "./redux/redux-store";
 
 
 export type messageSenderType = {
@@ -91,11 +91,12 @@ export type PostData = {
     message: string,
     likeCounts: number
 }//Типизируем наши посты
-export type StateType = {
+export type StateType = ReturnType<typeof store.getState>
+/*export type StateType = {
     ProfileData: ProfileDataType,
     DialogsData: DialogsDataType,
 
-}
+}*/
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -103,8 +104,8 @@ export type StoreType = {
     _onChange: () => void
     dispatch: dispatchType
 }
-
-let rerenderPost = () => {
+export type stateType=ReturnType<typeof store.getState>
+let rerenderPost = (state:StateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App dispatch={store.dispatch.bind(store)}
@@ -112,5 +113,7 @@ let rerenderPost = () => {
         </BrowserRouter>,
         document.getElementById('root'))
 }
-rerenderPost()
-store.subscribe(rerenderPost)
+rerenderPost(store.getState())
+store.subscribe(()=> {
+    rerenderPost(store.getState())
+})

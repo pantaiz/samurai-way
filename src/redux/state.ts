@@ -10,6 +10,7 @@ import {v1} from "uuid";
 import {profileReducer} from "./profile-reducer";
 import { dialogReducer } from "./dialog-reducer";
 
+/*
 
 export const store: StoreType = {
     _state: {
@@ -154,4 +155,5 @@ export const store: StoreType = {
         this._onChange()
     }
 }
+*/
 
