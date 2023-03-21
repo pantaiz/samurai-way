@@ -8,7 +8,7 @@ type MyPostsProps = {
     myPostsData: MyPostsData
     dispatch:dispatchType
 }
-
+//adadasda
 const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.MyPosts}>
