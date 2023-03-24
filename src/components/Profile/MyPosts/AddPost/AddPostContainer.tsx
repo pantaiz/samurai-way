@@ -14,7 +14,6 @@ export const AddPost = (props: AddPostPtopsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
-        props.addPost()
         const action=AddPostActionCreator()
         newPostElement.current?.value &&props.dispatch(action)
     }
