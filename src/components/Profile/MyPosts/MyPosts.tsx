@@ -17,7 +17,6 @@ const MyPosts = (props: MyPostsProps) => {
                 <Post postData={props.myPostsData.PostData}/>
         </div>
     )
-
 }
 
 export default MyPosts
