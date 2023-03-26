@@ -19,7 +19,7 @@ export const AddPostContainer = (props: AddPostContainerPropsType) => {
     }
     const onChangeHandler = (text:string) => {
         const action=updateNewPostTextsActionCreator(text)
-        props.dispatch(action)
+        props.dispatch(action)assd
     }
     return (
             <AddPost textareaText={props.AddPostData.newPostText} updateNEwPostText={onChangeHandler} addPost={addPost}/>
