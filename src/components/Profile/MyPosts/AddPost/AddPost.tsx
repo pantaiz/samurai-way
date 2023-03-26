@@ -5,28 +5,28 @@ import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../..
 
 
 type AddPostPtopsType = {
-
-    AddPostData: AddPostData
-    dispatch:dispatchType
+    updateNEwPostText:(text:string)=>void
+    addPost:()=>void
+    textareaText:string
 }
 
 export const AddPost = (props: AddPostPtopsType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+
     const addPost = () => {
         props.addPost()
-        const action=AddPostActionCreator()
-        newPostElement.current?.value &&props.dispatch(action)
     }
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        const action=updateNewPostTextsActionCreator(e.currentTarget.value)
-        props.dispatch(action)
+        const text=e.currentTarget.value
+        props.updateNEwPostText(text)
+      //  const action=updateNewPostTextsActionCreator(text)
+       // props.dispatch(action)
     }
     return (
         <div className={s.Main}>
             <div className={s.textInput}>
                 <textarea onChange={onChangeHandler}
-                          value={props.AddPostData.newPostText} ref={newPostElement} className={s.textarea}
+                          value={props.textareaText} className={s.textarea}
                           placeholder={'What\'s new with you?'}> </textarea>
             </div>
             <button onClick={addPost} className={s.button}>Publish</button>

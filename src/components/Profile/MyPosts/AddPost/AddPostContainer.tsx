@@ -1,34 +1,27 @@
-import React, { ChangeEvent} from "react";
-import s from './AddPosts.module.css';
+import React from "react";
+
 import {AddPostData, dispatchType} from "../../../../index";
 import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/profile-reducer";
+import {AddPost} from "./AddPost";
+import {AppStateType} from "../../../../redux/redux-store";
 
 
-type AddPostPtopsType = {
-
-    AddPostData: AddPostData
-    dispatch:dispatchType
+type AddPostContainerPropsType = {
+store:AppStateType
+  /*  AddPostData: AddPostData
+    dispatch:dispatchType*/
 }
 
-export const AddPost = (props: AddPostPtopsType) => {
-
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+export const AddPostContainer = (props: AddPostContainerPropsType) => {
     const addPost = () => {
         const action=AddPostActionCreator()
-        newPostElement.current?.value &&props.dispatch(action)
+        props.store.di
     }
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        const action=updateNewPostTextsActionCreator(e.currentTarget.value)
+    const onChangeHandler = (text:string) => {
+        const action=updateNewPostTextsActionCreator(text)
         props.dispatch(action)
     }
     return (
-        <div className={s.Main}>
-            <div className={s.textInput}>
-                <textarea onChange={onChangeHandler}
-                          value={props.AddPostData.newPostText} ref={newPostElement} className={s.textarea}
-                          placeholder={'What\'s new with you?'}> </textarea>
-            </div>
-            <button onClick={addPost} className={s.button}>Publish</button>
-        </div>
+            <AddPost textareaText={props.AddPostData.newPostText} updateNEwPostText={onChangeHandler} addPost={addPost}/>
     )
 }
