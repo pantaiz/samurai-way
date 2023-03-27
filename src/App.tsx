@@ -13,8 +13,8 @@ import {AppStateType} from "./redux/redux-store";
 
 
 type AppProps={
-    state:AppStateType
-    dispatch:dispatchType
+  /*  state:AppStateType
+    dispatch:dispatchType*/
 }
 
 function App(props:AppProps) {
@@ -24,7 +24,7 @@ function App(props:AppProps) {
                 <Header/>
                 <Navbar/>
                 <div className={"app-wraper-content"}>
-                    <Route path={"/Profile"} render={() => <Profile store={} dispatch={props.dispatch} profileData={props.state.profileReducer}/>} />
+                    <Route path={"/Profile"} render={() => <Profile/>} />
                     <Route path={"/dialogs"} render={() => <Dialogs dispatch={props.dispatch} dialogsData={props.state.dialogReducer}/>} />
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>

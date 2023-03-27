@@ -5,6 +5,7 @@ import './index.css';
 
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
+import { StoreContext } from './StoreContext';
 
 
 export type messageSenderType = {
@@ -108,8 +109,10 @@ export type stateType=ReturnType<typeof store.getState>
 let rerenderPost = (state:StateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App dispatch={store.dispatch.bind(store)}
-                 state={store.getState()}/>
+            <StoreContext.Provider value={store}>
+                <App/>
+            </StoreContext.Provider>
+
         </BrowserRouter>,
         document.getElementById('root'))
 }

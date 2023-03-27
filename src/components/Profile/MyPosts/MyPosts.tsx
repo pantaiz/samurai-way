@@ -14,8 +14,7 @@ type MyPostsProps = {
 const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.MyPosts}>
-                <AddPostContainer store={store} {/*dispatch={props.dispatch}
-                         AddPostData={props.myPostsData.AddPostData}*/}/>
+                <AddPostContainer />
                 <Post postData={props.myPostsData.PostData}/>
         </div>
     )

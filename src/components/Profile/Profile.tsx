@@ -14,7 +14,7 @@ const Profile = (props:ProfileProps) => {
     return (<div className={s.content}>
             <ProfileInfo profileinfo={props.profileData.ProfileInfo}/>
 
-            <MyPosts  dispatch={props.dispatch} myPostsData={props.profileData.MyPostsData} />
+            <MyPosts />
         </div>
     )
 

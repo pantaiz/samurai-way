@@ -8,5 +8,6 @@ const reducers=combineReducers({
 })
 
 export type AppStateType = ReturnType<typeof reducers>
+export type storeType = ReturnType<typeof createStore>
 
 export const store=createStore(reducers)
