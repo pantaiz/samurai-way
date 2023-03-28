@@ -1,5 +1,35 @@
 import {v1} from "uuid";
-import {ActtionType, addPostType, ProfileDataType, updateNewPostTextsType} from "../index";
+export type ProfileDataType = {
+
+    ProfileInfo: ProfileinfoData
+    MyPostsData: MyPostsData
+}
+export type ProfileinfoData = {
+    avatar: string,
+    id: number,
+    name: string,
+    nick: string,
+    description: string,
+    followers: number,
+    following: number,
+}
+export type MyPostsData = {
+    PostsData: Array<PostData>,
+    AddPostData: AddPostData
+}
+export type AddPostData = {
+    newPostText: string,
+}
+export type PostData = {
+    id: string,
+    avatar: string,
+    name: string,
+    nick: string
+    message: string,
+    likeCounts: number
+}
+
+
 
 let initionalState:ProfileDataType={
     ProfileInfo: {
@@ -13,11 +43,12 @@ let initionalState:ProfileDataType={
     }
     ,
     MyPostsData: {
-        PostData: [
+        PostsData: [
             {
                 id: v1(),
                 avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
-                nick: "@Shay_Jordon", name: "Shay Jordon",
+                nick: "@Shay_Jordon",
+                name: "Shay Jordon",
                 message: "1. Follow people you like by clicking on the ’+ Follow’ button to see their posts in your feed." +
                     "2. Share your thoughts with others and gain a following." +
                     "Happy Vogel to you!", likeCounts: 15
@@ -39,8 +70,18 @@ let initionalState:ProfileDataType={
         }
     },
 }
+type ActtionType =   addPostType | updateNewPostTextsType
+export type addPostType = {
+    type: 'add-Post'
 
-export const profileReducer :(state:ProfileDataType, action:ActtionType)=> ProfileDataType =(state=initionalState,action) => {
+}
+export type updateNewPostTextsType = {
+    type: 'update-New-Post-Texts'
+    newPostText: string
+}
+
+
+export const profileReducer=(state:ProfileDataType=initionalState,action:ActtionType):ProfileDataType => {
     switch (action.type) {
         case 'add-Post':
             let newPost = {
@@ -51,7 +92,7 @@ export const profileReducer :(state:ProfileDataType, action:ActtionType)=> Profi
                 message: state.MyPostsData.AddPostData.newPostText,
                 likeCounts: 0
             }
-            state.MyPostsData.PostData.unshift(newPost)
+            state.MyPostsData.PostsData.unshift(newPost)
             state.MyPostsData.AddPostData.newPostText = ''
             return state
         case 'update-New-Post-Texts':

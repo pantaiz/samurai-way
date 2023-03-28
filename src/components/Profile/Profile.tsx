@@ -2,19 +2,15 @@ import React from "react";
 import s from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {dispatchType, ProfileDataType, ProfileinfoData} from "../../index";
-
-type ProfileProps={
-    profileData:ProfileDataType
-    dispatch:dispatchType
-}
+import {ProfilePropsType} from "./ProfileContainer";
 
 
-const Profile = (props:ProfileProps) => {
+
+const Profile = (props:ProfilePropsType) => {
     return (<div className={s.content}>
-            <ProfileInfo profileinfo={props.profileData.ProfileInfo}/>
+            <ProfileInfo profileinfo={props.profileinfo}/>
 
-            <MyPosts />
+            <MyPosts postData={props.myPostsData} />
         </div>
     )
 

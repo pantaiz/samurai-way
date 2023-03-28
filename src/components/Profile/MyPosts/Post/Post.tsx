@@ -1,6 +1,7 @@
 import React from "react";
+import { PostData } from "../../../../redux/profile-reducer";
 import s from './Post.module.css';
-import {PostData} from "../../../../index";
+
 
 
 type PostProps={

@@ -1,7 +1,53 @@
 import {v1} from "uuid";
-import {ActtionType, addNewMyMessageType, DialogsDataType, updatedNewMyMessageType} from "../index";
+export type DialogsDataType = {
+    messageData: MessageDataType,
+    dialogsItemData: Array<DialogsItemDataType>
+}
+export type MessageDataType = {
+    friendMessage: Array<FriendMessageData>,
+    myMessage: Array<MyMessageData>
+    messageSender: messageSenderType
+}
+export type  DialogsItemDataType = {
+    id: number,
+    name: string
+    avatar: string
+}//Типизируем наши входные диалоги
+export type messageSenderType = {
+    newMyMessage: string
+}
+export type  MyMessageData = {
+    id: string,
+    user: {
+        name: string
+    },
+    message: {
+        text: string
+        time: string
+    },
+}
+export type FriendMessageData = {
+    id: number,
+    user: {
+        name: string
+    },
+    message: {
+        text: string
+        time: string
+    },
+}
 
-let initionalStore:DialogsDataType={
+export type ActtionType = updatedNewMyMessageType | addNewMyMessageType
+
+export type updatedNewMyMessageType = {
+    type: 'updated-New-My-Message'
+    newMyMessage: string
+}
+export type addNewMyMessageType = {
+    type: 'add-New-My-Message'
+}
+
+let initionalState:DialogsDataType={
         messageData: {
             myMessage: [
                 {
@@ -86,7 +132,8 @@ let initionalStore:DialogsDataType={
         ]
 
     }
-export const dialogReducer:(state:DialogsDataType, action:ActtionType)=>DialogsDataType = (state=initionalStore, action) => {
+
+export const dialogReducer=(state:DialogsDataType=initionalState, action:ActtionType):DialogsDataType  => {
     switch (action.type) {
 
         case 'updated-New-My-Message':

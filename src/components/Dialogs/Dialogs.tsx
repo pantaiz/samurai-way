@@ -6,8 +6,8 @@ import {DialogsDataType, dispatchType, MessageDataType} from "../../index";
 
 
 export type DialogsProps={
-    dialogsData:DialogsDataType
-    dispatch:dispatchType
+  /*  dialogsData:DialogsDataType
+    dispatch:dispatchType*/
 }
 
 

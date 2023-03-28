@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
 import './index.css';
-
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/redux-store";
-import { StoreContext } from './StoreContext';
+import store from "./redux/redux-store";
+import {Provider} from "react-redux";
 
 
-export type messageSenderType = {
+/*export type messageSenderType = {
     newMyMessage: string
 }
 export type  DialogsItemDataType = {
@@ -53,7 +52,7 @@ export type MyPostsData = {
     PostData: Array<PostData>,
     AddPostData: AddPostData
 }
-export type ProfileDataType = {
+ type ProfileDataType = {
     MyPostsData: MyPostsData
     ProfileInfo: ProfileinfoData
 }
@@ -84,7 +83,7 @@ export type updateNewPostTextsType = {
 }
 
 export type dispatchType=(actrion: ActtionType) => void
-export type PostData = {
+ type PostData = {
     id: string,
     avatar: string,
     name: string,
@@ -92,26 +91,26 @@ export type PostData = {
     message: string,
     likeCounts: number
 }//Типизируем наши посты
-export type StateType = ReturnType<typeof store.getState>
-/*export type StateType = {
+
+/!*export type StateType = {
     ProfileData: ProfileDataType,
     DialogsData: DialogsDataType,
 
-}*/
-export type StoreType = {
+}*!/
+ type StoreType = {
     _state: StateType
     getState: () => StateType
     subscribe: (callback: () => void) => void
     _onChange: () => void
     dispatch: dispatchType
-}
-export type stateType=ReturnType<typeof store.getState>
+}*/
+type StateType = ReturnType<typeof store.getState>
 let rerenderPost = (state:StateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App/>
-            </StoreContext.Provider>
+            </Provider>
 
         </BrowserRouter>,
         document.getElementById('root'))

@@ -1,16 +1,8 @@
 import React, { ChangeEvent} from "react";
 import s from './AddPosts.module.css';
-import {AddPostData, dispatchType} from "../../../../index";
-import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/profile-reducer";
+import {AddPostPropsType} from "./AddPostContainer";
 
-
-type AddPostPtopsType = {
-    updateNEwPostText:(text:string)=>void
-    addPost:()=>void
-    textareaText:string
-}
-
-export const AddPost = (props: AddPostPtopsType) => {
+export const AddPost = (props: AddPostPropsType) => {
 
 
     const addPost = () => {
@@ -18,9 +10,7 @@ export const AddPost = (props: AddPostPtopsType) => {
     }
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
         const text=e.currentTarget.value
-        props.updateNEwPostText(text)
-      //  const action=updateNewPostTextsActionCreator(text)
-       // props.dispatch(action)
+        props.updateNewPostText(text)
     }
     return (
         <div className={s.Main}>

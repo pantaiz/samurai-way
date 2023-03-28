@@ -1,36 +1,45 @@
 import React from "react";
-
-import {AddPostData, dispatchType} from "../../../../index";
-import {AddPostActionCreator, updateNewPostTextsActionCreator} from "../../../../redux/profile-reducer";
+import {
+    AddPostActionCreator,
+    ProfileDataType, profileReducer,
+    updateNewPostTextsActionCreator
+} from "../../../../redux/profile-reducer";
 import {AddPost} from "./AddPost";
-import {AppStateType, storeType} from "../../../../redux/redux-store";
-import { StoreContext } from "../../../../StoreContext";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {AppStateType} from "../../../../redux/redux-store";
 
 
-type AddPostContainerPropsType = {
-/*
-   AddPostData: AddPostData
-    dispatch:dispatchType*/
+type AddPostStateToPropsType = {
+    textareaText: string
 }
+type AddPostDispatchToPropsType = {
+    addPost: () => void
+    updateNewPostText: (text: string) => void
+}
+export type AddPostPropsType = AddPostDispatchToPropsType & AddPostStateToPropsType
 
-export const AddPostContainer = (props: AddPostContainerPropsType) => {
 
+const AddPostStateToProps = (state: AppStateType): AddPostStateToPropsType => {
     return (
-        <StoreContext.Consumer>
-            {(store)=>{
-                let state=store.getState();
-                const addPost = () => {
-                    const action=AddPostActionCreator()
-                    store.dispatch(action)
-                }
-                const onChangeHandler = (text:string) => {
-                    const action=updateNewPostTextsActionCreator(text)
-                    store.dispatch(action)
-                }
-            return <AddPost textareaText={state.AddPostData.newPostText} updateNEwPostText={onChangeHandler}
-                     addPost={addPost}/>}
-
+        {
+            textareaText: state.profileReducer.MyPostsData.AddPostData.newPostText
         }
-        </StoreContext.Consumer>
     )
 }
+
+const AddPostDispatchToProps = (dispatch: Dispatch): AddPostDispatchToPropsType => {
+    return (
+        {
+            addPost: () => {
+                dispatch(AddPostActionCreator())
+            },
+            updateNewPostText: (text: string) => {
+                dispatch(updateNewPostTextsActionCreator(text))
+
+            }
+        }
+    )
+}
+
+export const AddPostContainer = connect(AddPostStateToProps, AddPostDispatchToProps)(AddPost)
