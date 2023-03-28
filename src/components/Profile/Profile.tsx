@@ -9,8 +9,7 @@ import {ProfilePropsType} from "./ProfileContainer";
 const Profile = (props:ProfilePropsType) => {
     return (<div className={s.content}>
             <ProfileInfo profileinfo={props.profileinfo}/>
-
-            <MyPosts postData={props.myPostsData} />
+            <MyPosts postData={props.myPostsData.PostsData} />
         </div>
     )
 

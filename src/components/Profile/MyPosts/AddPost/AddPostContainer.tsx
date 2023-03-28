@@ -1,7 +1,6 @@
 import React from "react";
 import {
     AddPostActionCreator,
-    ProfileDataType, profileReducer,
     updateNewPostTextsActionCreator
 } from "../../../../redux/profile-reducer";
 import {AddPost} from "./AddPost";

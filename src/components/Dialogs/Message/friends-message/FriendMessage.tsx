@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './FriendMessage.module.css'
-import {FriendMessageData} from "../../../../index";
+import {FriendMessageData} from "../../../../redux/dialog-reducer";
+
 
 type FriendMessageProps = {
     message: Array<FriendMessageData>

@@ -1,11 +1,4 @@
-import {
-    addNewMyMessageType,
-    addPostType,
-    StateType,
-    StoreType,
-    updatedNewMyMessageType,
-    updateNewPostTextsType
-} from "../index";
+
 import {v1} from "uuid";
 import {profileReducer} from "./profile-reducer";
 import { dialogReducer } from "./dialog-reducer";

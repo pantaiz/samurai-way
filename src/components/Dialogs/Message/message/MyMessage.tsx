@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './MyMessage.module.css'
-import {MyMessageData} from "../../../../index";
+import {MyMessageData} from "../../../../redux/dialog-reducer";
+
 
 export type MessagePropsType = {
     message:Array<MyMessageData>
