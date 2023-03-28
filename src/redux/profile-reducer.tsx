@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+
 export type ProfileDataType = {
 
     ProfileInfo: ProfileinfoData
@@ -30,8 +31,7 @@ export type PostData = {
 }
 
 
-
-let initionalState:ProfileDataType={
+let initionalState: ProfileDataType = {
     ProfileInfo: {
         avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
         id: 1,
@@ -70,7 +70,7 @@ let initionalState:ProfileDataType={
         }
     },
 }
-type ActtionType =   addPostType | updateNewPostTextsType
+type ActtionType = addPostType | updateNewPostTextsType
 export type addPostType = {
     type: 'add-Post'
 
@@ -81,9 +81,10 @@ export type updateNewPostTextsType = {
 }
 
 
-export const profileReducer=(state:ProfileDataType=initionalState,action:ActtionType):ProfileDataType => {
+export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
-        case 'add-Post':
+        case 'add-Post': {
+            debugger
             let newPost = {
                 id: v1(),
                 avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
@@ -92,19 +93,28 @@ export const profileReducer=(state:ProfileDataType=initionalState,action:Acttion
                 message: state.MyPostsData.AddPostData.newPostText,
                 likeCounts: 0
             }
-            state.MyPostsData.PostsData.unshift(newPost)
-            state.MyPostsData.AddPostData.newPostText = ''
-            return state
+            const stateCopy = {
+                ...state,
+                MyPostsData: {
+                    ...state.MyPostsData,
+                    PostsData: [newPost, ...state.MyPostsData.PostsData]
+                }
+            }
+            stateCopy.MyPostsData.AddPostData.newPostText = ''
+            return stateCopy
+        }
         case 'update-New-Post-Texts':
-            state.MyPostsData.AddPostData.newPostText = action.newPostText
-            return state
+
+            const stateCopy = {...state}
+            stateCopy.MyPostsData.AddPostData.newPostText = action.newPostText
+            return stateCopy
         default:
             return state
     }
 }
-export const updateNewPostTextsActionCreator:(newPostText:string)=>updateNewPostTextsType = (newPostText) => {
-    return  {type:"update-New-Post-Texts",newPostText:newPostText}
+export const updateNewPostTextsActionCreator: (newPostText: string) => updateNewPostTextsType = (newPostText) => {
+    return {type: "update-New-Post-Texts", newPostText: newPostText}
 }
-export const AddPostActionCreator:()=>addPostType = () => {
-    return  {type:"add-Post"}
+export const AddPostActionCreator: () => addPostType = () => {
+    return {type: "add-Post"}
 }

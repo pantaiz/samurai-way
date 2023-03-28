@@ -12,17 +12,12 @@ export type MessageSenderProps = {
     updatedNewMyMessage: (text: string) => void
 }
 export const MessageSender = (props: MessageSenderProps) => {
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
-
     const updatedNewMyMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        /*const action = updatedNewMyMessageActionCreator(e.currentTarget.value)
-        props.dispatch(action)*/
         props.updatedNewMyMessage(e.currentTarget.value)
     }
 
     const sendMessage = () => {
-        /*const action = addNewMyMessageActionCreator()
-        props.dispatch(action)*/
+
         props.sendMessage()
     }
     return (
@@ -30,7 +25,6 @@ export const MessageSender = (props: MessageSenderProps) => {
             <div className={s.sendForm}>
                 <textarea
                     onChange={updatedNewMyMessage}
-                    ref={newMessageElement}
                     placeholder={'Type your message'}
                     value={props.messageSenderData.newMyMessage}
                 />

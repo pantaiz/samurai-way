@@ -3,8 +3,12 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 import {Dispatch} from "redux";
-import {updateNewPostTextsActionCreator} from "../../redux/profile-reducer";
-import {addNewMyMessageActionCreator, DialogsDataType} from "../../redux/dialog-reducer";
+
+import {
+    addNewMyMessageActionCreator,
+    DialogsDataType,
+    updatedNewMyMessageActionCreator
+} from "../../redux/dialog-reducer";
 
 
 
@@ -31,8 +35,8 @@ const DialogDispatchToProps = (dispatch: Dispatch): DialogDispatchToPropsType =>
             sendMessage: () => {
                 dispatch(addNewMyMessageActionCreator())
             },
-            updatedNewMyMessage: (text: string) => {
-                dispatch(updateNewPostTextsActionCreator(text))
+            updatedNewMyMessage: (newPostText: string) => {
+                dispatch(updatedNewMyMessageActionCreator(newPostText))
             }
         }
     )
