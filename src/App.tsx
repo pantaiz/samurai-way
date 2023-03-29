@@ -10,6 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {ProfileContainer} from "./components/Profile/ProfileContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import {Users} from "./components/Users/Users";
 
 
 type AppProps={
@@ -26,6 +27,7 @@ function App(props:AppProps) {
                 <div className={"app-wraper-content"}>
                     <Route path={"/Profile"} render={() => <ProfileContainer/>} />
                     <Route path={"/dialogs"} render={() => <DialogsContainer />} />
+                    <Route path={"/Users"} render={() => <Users />} />
                     <Route path={"/news"} component={News}/>
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>
