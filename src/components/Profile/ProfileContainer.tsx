@@ -22,7 +22,7 @@ const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
     )
 }
 
-const ProfileDispatchToProps = {}
+const ProfileDispatchToProps=() => {}
 
 export const ProfileContainer = connect(ProfileStateToProps, ProfileDispatchToProps)(Profile)
 
