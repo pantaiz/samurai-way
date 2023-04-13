@@ -16,7 +16,7 @@ export type setUsersAC = {
     type: 'set-users',
     users: UsersType
 }
-export type UsersType = Array<{ id: string, photoURL:string, followed: boolean, fullName: string, status: string, location: { city: string, country: string } }>
+export type UsersType = Array<{ id: string, photos:{small:string,large:string}, followed: boolean, fullName: string, status: string, location: { city: string, country: string } }>
 type initionalStateType = {
     users: UsersType
 }

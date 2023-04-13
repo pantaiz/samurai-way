@@ -113,7 +113,8 @@ let rerenderPost = (state:StateType) => {
             </Provider>
 
         </BrowserRouter>,
-        document.getElementById('root'))
+        document.getElementById('root')
+    )
 }
 rerenderPost(store.getState())
 store.subscribe(()=> {

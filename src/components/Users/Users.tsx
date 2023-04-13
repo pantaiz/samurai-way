@@ -2,7 +2,8 @@ import React from "react";
 import s from './Users.module.css';
 import {UsersPropsType} from "./UsersContainer";
 import {v1} from "uuid";
-
+import axios from "axios";
+import userPhoto from '../../assets/image/user.jpg'
 export const Users = (props:UsersPropsType) => {
 let users=[
         {
@@ -39,7 +40,11 @@ let users=[
     ]
 
     if (props.users.length===0) {
-        props.setUsers(users)
+        axios.get('https://social-network.samuraijs.com/api/1.0/users ')
+            .then(response=>{
+                props.setUsers(response.data.items)
+            })
+
     }
 
     return (<div className={s.banner}>
@@ -47,7 +52,7 @@ let users=[
                 <span>
 
                     <div >
-                        <img className={s.avatarimg} src={a.photoURL}/>
+                        <img className={s.avatarimg} src={a.photos.small!=null? a.photos.small:userPhoto}/>
                     </div>
                     <div>
                         {a.followed?
@@ -58,7 +63,7 @@ let users=[
                 </span>
                 <span>
                     <span><div>{a.fullName}</div><div></div>{a.status}</span>
-                    <span><div>{a.location.country}</div><div>{a.location.city}</div></span>
+                    <span><div>{'a.location.country'}</div><div>{'a.location.city'}</div></span>
                 </span>
             </div>)}
             <p>USERS</p>
