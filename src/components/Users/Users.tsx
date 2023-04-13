@@ -5,21 +5,17 @@ import axios from "axios";
 
 
 export class Users extends React.Component<any, any> {
-constructor(props:any) {
-    super(props);
-    if (this.props.users.length === 0) {
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users ')
             .then(response => {
                 this.props.setUsers(response.data.items)
             })
-
     }
-}
 
 
     render() {
         return (<div className={s.banner}>
-                {this.props.users.map((a:any) => <div key={a.id}>
+                {this.props.users.map((a: any) => <div key={a.id}>
                     <span>
                     <div>
                         <img className={s.avatarimg} src={a.photos.small != null ? a.photos.small : userPhoto}/>
@@ -31,12 +27,12 @@ constructor(props:any) {
 
                     </div>
                 </span>
-                        <span>
+                    <span>
                     <span><div>{a.fullName}</div><div></div>
                         {a.status}</span>
                     <span><div>{'a.location.country'}</div><div>{'a.location.city'}</div></span>
                 </span>
-                    </div>)}
+                </div>)}
                 <p>USERS</p>
             </div>
         )
