@@ -5,11 +5,14 @@ import {Users} from "./Users";
 import {Dispatch} from "redux";
 import {followAC, setUsersAC, unfollowAC, UsersType} from "../../redux/users-reducer";
 
-type UsersStateToPropsType = {
-    users:UsersType
+export type UsersStateToPropsType = {
+    users:UsersType,
+    pageSize:number
+    totalUserCount: number
+    currentPage:number
 }
 
-type UsersDispatchToPropsType = {
+export type UsersDispatchToPropsType = {
     follow: (userId: string)=>void,
     unfollow: (userId: string)=>void,
     setUsers: (users: UsersType) =>void
@@ -19,7 +22,10 @@ export type UsersPropsType = UsersStateToPropsType & UsersDispatchToPropsType
 
 const UsersStateToProps = (state: AppStateType): UsersStateToPropsType => {
     return {
-        users: state.userPage.users
+        users: state.userPage.users,
+        pageSize:state.userPage.pageSize,
+        totalUserCount:state.userPage.totalUserCount,
+        currentPage:state.userPage.currentPage
     }
 
 }
@@ -39,4 +45,3 @@ const UsersDispatchToProps = (dispatch: Dispatch):UsersDispatchToPropsType => {
 }
 
 export const UsersContainer = connect(UsersStateToProps, UsersDispatchToProps)(Users)
-
