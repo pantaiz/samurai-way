@@ -1,11 +1,21 @@
 import {v1} from "uuid";
 
 
-export type ActtionType = followType | unfollowType | setUsersAC
+export type ActtionType = followType | unfollowType | setUsersAC|setCurrentPageType|setTotalUserCountType
 
 export type followType = {
     type: 'follow',
     userID: string
+
+}
+export type setCurrentPageType = {
+    type: 'SET_CURRENT_PAGE',
+    currentPage:number
+
+}
+export type setTotalUserCountType = {
+    type: 'SET_TOTAL_USER_COUNT',
+    totalUserCount:number
 
 }
 export type unfollowType = {
@@ -21,14 +31,14 @@ export type usersReducerStateType = {
     users: UsersType
     pageSize: number
     totalUserCount: number
-    currentPage:number
+    currentPage: number
 }
 
 let initionalState: usersReducerStateType = {
     users: [],
     pageSize: 5,
     totalUserCount: 0,
-    currentPage:1
+    currentPage: 1
 }
 
 export const usersReducer = (state: usersReducerStateType = initionalState, action: ActtionType): usersReducerStateType => {
@@ -45,8 +55,16 @@ export const usersReducer = (state: usersReducerStateType = initionalState, acti
             };
         case 'set-users':
             return {
-                ...state, users: [...state.users, ...action.users]
+                ...state, users: [ ...action.users]
             };
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state, currentPage:action.currentPage
+             };
+            case "SET_TOTAL_USER_COUNT":
+            return {
+                ...state, totalUserCount:action.totalUserCount
+             };
 
         default:
             return state
@@ -60,4 +78,10 @@ export const unfollowAC = (userID: string): unfollowType => {
 }
 export const setUsersAC = (users: UsersType): setUsersAC => {
     return {type: 'set-users', users: users}
+}
+export const setCurrentPageAC = (currentPage: number): setCurrentPageType => {
+    return {type: "SET_CURRENT_PAGE", currentPage: currentPage}
+}
+export const setTotalUserCountAC = (totalUserCount: number): setTotalUserCountType => {
+    return {type:"SET_TOTAL_USER_COUNT", totalUserCount: totalUserCount}
 }
