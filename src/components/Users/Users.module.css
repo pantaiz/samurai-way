@@ -10,3 +10,6 @@
     width: 80px;
     border-radius: 12px;
 }
+.selectedPage{
+    font-weight: 800;
+}

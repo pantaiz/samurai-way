@@ -26,7 +26,7 @@ export class Users extends React.Component<UsersPropsType,any > {
         return (<div className={s.banner}>
                 <div>
                     {pages.map(p=>{
-                        return <span className={this.props.}>{p}</span>
+                        return <span className={ this.props.currentPage===p ? s.selectedPage:'' }>{p}</span>
                     })}
                 </div>
                 {this.props.users.map((a: any) => <div key={a.id}>
@@ -42,7 +42,7 @@ export class Users extends React.Component<UsersPropsType,any > {
                     </div>
                 </span>
                     <span>
-                    <span><div>{a.fullName}</div><div></div>
+                    <span><div>{a.fullName}</div><div> </div>
                         {a.status}</span>
                     <span><div>{'a.location.country'}</div><div>{'a.location.city'}</div></span>
                 </span>
