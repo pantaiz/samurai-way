@@ -1,11 +1,17 @@
 import {v1} from "uuid";
 
 
-export type ActtionType = followType | unfollowType | setUsersAC|setCurrentPageType|setTotalUserCountType
+
+export type ActtionType = followType | unfollowType | setUsersAC|setCurrentPageType|setTotalUserCountType|setIsFetchingType
 
 export type followType = {
     type: 'follow',
     userID: string
+
+}
+export type setIsFetchingType = {
+    type: 'TOOGLE_IS_FETCHING',
+    isFetching: boolean
 
 }
 export type setCurrentPageType = {
@@ -26,19 +32,22 @@ export type setUsersAC = {
     type: 'set-users',
     users: UsersType
 }
-export type UsersType = Array<{ id: string, photos: { small: string, large: string }, followed: boolean, fullName: string, status: string, location: { city: string, country: string } }>
+export type UsersType = Array<{
+    id: string, photos: { small: string, large: string }, followed: boolean, fullName: string, status: string, location: { city: string, country: string } }>
 export type usersReducerStateType = {
     users: UsersType
     pageSize: number
     totalUserCount: number
     currentPage: number
+    isFetching:boolean
 }
 
 let initionalState: usersReducerStateType = {
     users: [],
     pageSize: 5,
     totalUserCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching:true,
 }
 
 export const usersReducer = (state: usersReducerStateType = initionalState, action: ActtionType): usersReducerStateType => {
@@ -65,6 +74,10 @@ export const usersReducer = (state: usersReducerStateType = initionalState, acti
             return {
                 ...state, totalUserCount:action.totalUserCount
              };
+            case "TOOGLE_IS_FETCHING":
+            return {
+                ...state, isFetching:action.isFetching
+             };
 
         default:
             return state
@@ -84,4 +97,7 @@ export const setCurrentPageAC = (currentPage: number): setCurrentPageType => {
 }
 export const setTotalUserCountAC = (totalUserCount: number): setTotalUserCountType => {
     return {type:"SET_TOTAL_USER_COUNT", totalUserCount: totalUserCount}
+}
+export const setIsFetchingAC = (isFetching: boolean): setIsFetchingType => {
+    return {type:"TOOGLE_IS_FETCHING", isFetching: isFetching}
 }
