@@ -3,11 +3,10 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {
-    followAC,
-    setCurrentPageAC, setIsFetchingAC,
-    setTotalUserCountAC,
-    setUsersAC,
-    unfollowAC, usersReducerStateType,
+    follow, setCurrentPage
+    , setIsFetching, setTotalUserCount,
+    setUsers, unfollow,
+    usersReducerStateType,
     UsersType
 } from "../../redux/users-reducer";
 import axios from "axios";
@@ -42,8 +41,8 @@ export class UsersContainer extends React.Component<UsersContainerType, any> {
 
         return <>
             {this.props.isFetching
-                ?<Preloader/>
-                :<Users {...this.props}
+                ? <Preloader/>
+                : <Users {...this.props}
                          onPageChanged={this.onPageChanged}/>}
         </>
     }
@@ -74,32 +73,11 @@ const UsersStateToProps = (state: AppStateType): usersReducerStateType => {
         pageSize: state.userPage.pageSize,
         totalUserCount: state.userPage.totalUserCount,
         currentPage: state.userPage.currentPage,
-        isFetching:state.userPage.isFetching,
+        isFetching: state.userPage.isFetching,
     }
 
 }
 
-const UsersDispatchToProps = (dispatch: Dispatch): UsersDispatchToPropsType => {
-    return {
-        follow: (userId: string) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: string) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: UsersType) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalUserCount: (totalUserCount: number) => {
-            dispatch(setTotalUserCountAC(totalUserCount))
-        },
-        setIsFetching:(isFetching:boolean)=>{
-            dispatch(setIsFetchingAC(isFetching))
-        }
-    }
-}
 
-export const UsersContainerforApp = connect(UsersStateToProps, UsersDispatchToProps)(UsersContainer)
+export const UsersContainerforApp = connect(
+    UsersStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUserCount, setIsFetching})(UsersContainer)
