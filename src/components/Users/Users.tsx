@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../assets/image/user.jpg";
 import {UsersContainerType} from "./UsersContainer";
+import { NavLink } from "react-router-dom";
 
 type UsersAPIComponentProps = { onPageChanged: (p: number) => void }
 type UsersPropsType = UsersContainerType & UsersAPIComponentProps
@@ -35,8 +36,9 @@ export const Users = (props: UsersPropsType) => {
             {props.users.map((a: any) => <div key={a.id}>
                     <span>
                     <div>
+                        <NavLink to={'/profile/'+a.id}>
                         <img alt={'avatar'} className={s.avatarimg}
-                             src={a.photos.small != null ? a.photos.small : userPhoto}/>
+                             src={a.photos.small != null ? a.photos.small : userPhoto}/></NavLink>
                     </div>
                     <div>
                         {a.followed ?

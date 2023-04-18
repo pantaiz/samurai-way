@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import profile from "../components/Profile/Profile";
 
 export type ProfileDataType = {
 
@@ -70,10 +71,15 @@ let initionalState: ProfileDataType = {
         }
     },
 }
-type ActtionType = addPostType | updateNewPostTextsType
+
+type ActtionType = addPostType | updateNewPostTextsType|setUserProfileACType
 export type addPostType = {
     type: 'add-Post'
 
+}
+export type setUserProfileACType={
+    type: "SET_USER_PROFILE",
+    profile:any
 }
 export type updateNewPostTextsType = {
     type: 'update-New-Post-Texts'
@@ -83,6 +89,9 @@ export type updateNewPostTextsType = {
 
 export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
+        case "SET_USER_PROFILE":{
+            return {...state,ProfileInfo:action.profile}
+        }
         case 'add-Post': {
             debugger
             let newPost = {
@@ -117,4 +126,7 @@ export const updateNewPostTextsActionCreator: (newPostText: string) => updateNew
 }
 export const AddPostActionCreator: () => addPostType = () => {
     return {type: "add-Post"}
+}
+export const setUserProfileAC=(profile:ProfileinfoData):setUserProfileACType => {
+    return {type: "SET_USER_PROFILE", profile}
 }
