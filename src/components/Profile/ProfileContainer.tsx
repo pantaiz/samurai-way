@@ -2,48 +2,26 @@ import React from "react";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import Profile from "./Profile";
-import {MyPostsData, ProfileinfoData} from "../../redux/profile-reducer";
+import {MyPostsData, ProfileInfoType, setUserProfile} from "../../redux/profile-reducer";
 import axios from "axios";
-/*
 
 type ProfileStateToPropsType = {
-    profileinfo: ProfileinfoData
-    myPostsData:MyPostsData
-}
-
-type ProfileDispatchToPropsType = {}
-
-export type ProfilePropsType = ProfileStateToPropsType & ProfileDispatchToPropsType
-
-const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
-    return (
-        {
-            profileinfo: state.profileReducer.ProfileInfo,
-            myPostsData:state.profileReducer.MyPostsData
-        }
-    )
-}
-
-const ProfileDispatchToProps=() => {}
-
-export const ProfileContainer = connect(ProfileStateToProps, ProfileDispatchToProps)(Profile)
-
-*/
-
-type ProfileStateToPropsType = {
-    profileinfo: ProfileinfoData
+    profileinfo: ProfileInfoType
     myPostsData: MyPostsData
 }
 
-type ProfileDispatchToPropsType = {}
+type ProfileDispatchToPropsType = {
+    setUserProfile: (data: any) => void
+}
 
 export type ProfilePropsType = ProfileStateToPropsType & ProfileDispatchToPropsType
 
 class ProfileContainers extends React.Component<ProfilePropsType, any> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/1124`)
             .then(response => {
                 this.props.setUserProfile(response.data)
+
             })
     }
 
@@ -63,8 +41,6 @@ const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
     )
 }
 
-const ProfileDispatchToProps = () => {
-}
 
-export const ProfileContainerForApp = connect(ProfileStateToProps, ProfileDispatchToProps)(ProfileContainers)
+export const ProfileContainerForApp = connect(ProfileStateToProps, {setUserProfile})(ProfileContainers)
 

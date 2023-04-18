@@ -11,3 +11,38 @@ const News = () => {
 
 }
 export default News
+
+
+
+/*
+
+type ProfileInfoType={
+    aboutMe: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
+    contacts: {
+       facebook:null
+       website: null
+       vk: null
+       twitter: null
+        instagram: null
+        youtube: null
+        github: null
+        mainLink: null
+    },
+    lookingForAJob: true
+    lookingForAJobDescription:'не ищу а дурачусь',
+    fullNam: "Shay Jordon",
+    userId: 1
+    photos: {
+        small: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg"
+        large: null
+    }
+}
+const ProfileInfo: {
+    avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
+        id: 1,
+        name: "Shay Jordon",
+        nick: "Shay_Jordon",
+        description: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
+        followers: 391,
+        following: 30,
+}*/

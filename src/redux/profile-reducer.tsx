@@ -1,19 +1,33 @@
 import {v1} from "uuid";
 import profile from "../components/Profile/Profile";
 
+export type ProfileInfoType={
+    aboutMe: string|null,
+    contacts: {
+        facebook:string|null
+        website: string|null
+        vk: string|null
+        twitter: string|null
+        instagram: string|null
+        youtube: string|null
+        github: string|null
+        mainLink: string|null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription:string|null
+    fullName: string
+    userId: string|number
+    photos: {
+        small: string|null
+        large: string|null
+    }
+}
+
+
 export type ProfileDataType = {
 
-    ProfileInfo: ProfileinfoData
+    ProfileInfo: ProfileInfoType
     MyPostsData: MyPostsData
-}
-export type ProfileinfoData = {
-    avatar: string,
-    id: number,
-    name: string,
-    nick: string,
-    description: string,
-    followers: number,
-    following: number,
 }
 export type MyPostsData = {
     PostsData: Array<PostData>,
@@ -34,13 +48,25 @@ export type PostData = {
 
 let initionalState: ProfileDataType = {
     ProfileInfo: {
-        avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
-        id: 1,
-        name: "Shay Jordon",
-        nick: "Shay_Jordon",
-        description: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
-        followers: 391,
-        following: 30,
+        aboutMe: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
+        contacts: {
+            facebook:null,
+            website: null,
+            vk: null,
+            twitter: null,
+            instagram: null,
+            youtube: null,
+            github: null,
+            mainLink: null,
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription:'не ищу а дурачусь',
+        fullName: "Shay Jordon",
+        userId: 1,
+        photos: {
+            small: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
+            large: null,
+        }
     }
     ,
     MyPostsData: {
@@ -79,7 +105,7 @@ export type addPostType = {
 }
 export type setUserProfileACType={
     type: "SET_USER_PROFILE",
-    profile:any
+    profileInfo:ProfileInfoType
 }
 export type updateNewPostTextsType = {
     type: 'update-New-Post-Texts'
@@ -90,7 +116,7 @@ export type updateNewPostTextsType = {
 export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
         case "SET_USER_PROFILE":{
-            return {...state,ProfileInfo:action.profile}
+            return {...state,ProfileInfo:action.profileInfo}
         }
         case 'add-Post': {
             debugger
@@ -127,6 +153,6 @@ export const updateNewPostTextsActionCreator: (newPostText: string) => updateNew
 export const AddPostActionCreator: () => addPostType = () => {
     return {type: "add-Post"}
 }
-export const setUserProfileAC=(profile:ProfileinfoData):setUserProfileACType => {
-    return {type: "SET_USER_PROFILE", profile}
+export const setUserProfile=(profileInfo:ProfileInfoType):setUserProfileACType => {
+    return {type: "SET_USER_PROFILE", profileInfo}
 }
