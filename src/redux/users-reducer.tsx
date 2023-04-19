@@ -1,8 +1,13 @@
 import {v1} from "uuid";
 
 
-
-export type ActtionType = followType | unfollowType | setUsersAC|setCurrentPageType|setTotalUserCountType|setIsFetchingType
+export type ActtionType =
+    followType
+    | unfollowType
+    | setUsersAC
+    | setCurrentPageType
+    | setTotalUserCountType
+    | setIsFetchingType
 
 export type followType = {
     type: 'follow',
@@ -16,12 +21,12 @@ export type setIsFetchingType = {
 }
 export type setCurrentPageType = {
     type: 'SET_CURRENT_PAGE',
-    currentPage:number
+    currentPage: number
 
 }
 export type setTotalUserCountType = {
     type: 'SET_TOTAL_USER_COUNT',
-    totalUserCount:number
+    totalUserCount: number
 
 }
 export type unfollowType = {
@@ -33,13 +38,14 @@ export type setUsersAC = {
     users: UsersType
 }
 export type UsersType = Array<{
-    id: string, photos: { small: string, large: string }, followed: boolean, fullName: string, status: string, location: { city: string, country: string } }>
+    id: string, photos: { small: string, large: string }, followed: boolean, fullName: string, status: string, location: { city: string, country: string }
+}>
 export type usersReducerStateType = {
     users: UsersType
     pageSize: number
     totalUserCount: number
     currentPage: number
-    isFetching:boolean
+    isFetching: boolean
 }
 
 let initionalState: usersReducerStateType = {
@@ -47,7 +53,7 @@ let initionalState: usersReducerStateType = {
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 1,
-    isFetching:true,
+    isFetching: true,
 }
 
 export const usersReducer = (state: usersReducerStateType = initionalState, action: ActtionType): usersReducerStateType => {
@@ -64,20 +70,20 @@ export const usersReducer = (state: usersReducerStateType = initionalState, acti
             };
         case 'set-users':
             return {
-                ...state, users: [ ...action.users]
+                ...state, users: [...action.users]
             };
         case 'SET_CURRENT_PAGE':
             return {
-                ...state, currentPage:action.currentPage
-             };
-            case "SET_TOTAL_USER_COUNT":
+                ...state, currentPage: action.currentPage
+            };
+        case "SET_TOTAL_USER_COUNT":
             return {
-                ...state, totalUserCount:action.totalUserCount
-             };
-            case "TOOGLE_IS_FETCHING":
+                ...state, totalUserCount: action.totalUserCount
+            };
+        case "TOOGLE_IS_FETCHING":
             return {
-                ...state, isFetching:action.isFetching
-             };
+                ...state, isFetching: action.isFetching
+            };
 
         default:
             return state
@@ -96,8 +102,8 @@ export const setCurrentPage = (currentPage: number): setCurrentPageType => {
     return {type: "SET_CURRENT_PAGE", currentPage: currentPage}
 }
 export const setTotalUserCount = (totalUserCount: number): setTotalUserCountType => {
-    return {type:"SET_TOTAL_USER_COUNT", totalUserCount: totalUserCount}
+    return {type: "SET_TOTAL_USER_COUNT", totalUserCount: totalUserCount}
 }
 export const setIsFetching = (isFetching: boolean): setIsFetchingType => {
-    return {type:"TOOGLE_IS_FETCHING", isFetching: isFetching}
+    return {type: "TOOGLE_IS_FETCHING", isFetching: isFetching}
 }

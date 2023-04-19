@@ -15,7 +15,7 @@ type PostProps={
 const Post = (props:PostProps) => {
     return <div>{props.postData.map(a => {
         return (
-            <div className={s.item}>
+            <div key={a.id} className={s.item}>
                 <div className={s.Header}>
                     <span className={s.AvaName}>
                 <img alt={'avatar'} src={a.avatar}/>
