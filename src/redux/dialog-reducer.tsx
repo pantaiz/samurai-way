@@ -41,8 +41,8 @@ export type FriendMessageData = {
 export type ActtionType = updatedNewMyMessageType | addNewMyMessageType
 
 export type updatedNewMyMessageType = {
-    type: 'updated-New-My-Message'
-    newMyMessage: string
+    type: 'updated-New-My-Message',
+    newMyMessage: string,
 }
 export type addNewMyMessageType = {
     type: 'add-New-My-Message'

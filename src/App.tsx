@@ -11,6 +11,7 @@ import Settings from "./components/Settings/Settings";
 import { ProfileContainerForApp} from "./components/Profile/ProfileContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainerforApp} from "./components/Users/UsersContainer";
+import { HeaderContainerForApp} from "./components/Header/HeaderContainer";
 
 
 type AppProps={
@@ -22,7 +23,7 @@ function App(props:AppProps) {
     return (
 
             <div className={'app-wraper'}>
-                <Header/>
+                <HeaderContainerForApp/>
                 <Navbar/>
                 <div className={"app-wraper-content"}>
                     <Route path={`/Profile/:userId?`} render={() => <ProfileContainerForApp/>} />

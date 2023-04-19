@@ -16,9 +16,11 @@ import {Preloader} from "../common/Preloader/Preloader";
 
 
 export class UsersContainer extends React.Component<UsersContainerType, any> {
+
     componentDidMount() {
+        this.props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize} `)
-            .then(response => {
+            .then(response=>{
                 this.props.setIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUserCount(response.data.totalCount)
@@ -31,6 +33,7 @@ export class UsersContainer extends React.Component<UsersContainerType, any> {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize} `)
             .then(response => {
+
                 this.props.setIsFetching(false)
                 this.props.setUsers(response.data.items)
 
@@ -38,7 +41,6 @@ export class UsersContainer extends React.Component<UsersContainerType, any> {
     }
 
     render() {
-
         return <>
             {this.props.isFetching
                 ? <Preloader/>

@@ -1,11 +1,26 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import s from './Header.module.css';
 
-const Header = () => {
-    return( <header className={s.header}>
+type HeaderPropsType = {
+    login: string | null,
+    isAuth: boolean
+}
 
-        <img alt={'logo'} src={'https://e7.pngegg.com/pngimages/594/603/png-clipart-graphic-design-logo-graphics-art-design-angle-poster.png'}/> <span>Pied Piper </span>
-        <button className={s.button}>Login</button>
+const Header = (props: HeaderPropsType) => {
+    return (<header className={s.header}>
+
+        <img alt={'logo'}
+             src={'https://e7.pngegg.com/pngimages/594/603/png-clipart-graphic-design-logo-graphics-art-design-angle-poster.png'}/>
+        <span>Pied Piper </span>
+        {
+            props.isAuth
+                ? <span>{props.login}</span>
+                : <NavLink to={'/login'}>
+                    <button className={s.button}>Login</button>
+                </NavLink>
+        }
+
     </header>)
 }
 export default Header

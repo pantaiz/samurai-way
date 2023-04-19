@@ -23,6 +23,7 @@ export const Users = (props: UsersPropsType) => {
                         элементом тоже*/
                         return p >= props.currentPage - 3 && p <= props.currentPage + 3
                             ? <span
+                                key={p}
                                 onClick={() => props.onPageChanged(p)}
                                 className={props.currentPage === p ? s.selectedPage : ''
                                 }>
