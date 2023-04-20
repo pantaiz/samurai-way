@@ -30,7 +30,7 @@ export const usersAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get(`auth/me `,
+        return axios.get(`auth/me `,
         ).then(response => {
             return response.data.data
         })

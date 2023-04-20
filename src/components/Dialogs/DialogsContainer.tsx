@@ -14,6 +14,7 @@ import {
 
 type  DialogStateToPropsType = {
     dialogsData: DialogsDataType
+    isAuth:boolean
 }
 type  DialogDispatchToPropsType = {
     sendMessage: () => void
@@ -25,7 +26,8 @@ export type  DialogPropsType = DialogStateToPropsType & DialogDispatchToPropsTyp
 const DialogStateToProps = (state: AppStateType):DialogStateToPropsType => {
     return (
         {
-        dialogsData : state.dialogReducer
+        dialogsData : state.dialogReducer,
+            isAuth:state.auth.isAuth
         }
         )
 }

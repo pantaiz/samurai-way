@@ -8,8 +8,8 @@ import {connect} from "react-redux";
 import {authAPI} from "../../api/api";
 
 export type HeaderStateToPropsType = {
-    login:string|null
-    isAuth:boolean
+    login: string | null
+    isAuth: boolean
 }
 export type HeaderDispatchToPropsType = {
     getAuthUserData: () => void
@@ -27,7 +27,7 @@ export class HeaderContainer extends React.Component<HeaderContainerType, any> {
 
     render() {
         return (
-            <Header login={this.props.login}  isAuth={this.props.isAuth}/>
+            <Header login={this.props.login} isAuth={this.props.isAuth}/>
         )
     }
 }

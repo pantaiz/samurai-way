@@ -4,12 +4,13 @@ import {AppStateType} from "../../redux/redux-store";
 import Profile from "./Profile";
 import {getUserProfile, MyPostsData, ProfileInfoType} from "../../redux/profile-reducer";
 
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 
 
 type ProfileStateToPropsType = {
     profileinfo: ProfileInfoType
     myPostsData: MyPostsData
+    isAuth:boolean
 }
 export type ParamsPropsType = {
     userId: string | undefined;
@@ -32,6 +33,7 @@ export class ProfileContainers extends React.Component<ProfilePropsType, any> {
     }
 
     render() {
+        if(!this.props.isAuth )return <Redirect to={'/login'}/>
         return (
             <Profile {...this.props}/>
         )
@@ -42,7 +44,8 @@ const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
     return (
         {
             profileinfo: state.profileReducer.ProfileInfo,
-            myPostsData: state.profileReducer.MyPostsData
+            myPostsData: state.profileReducer.MyPostsData,
+            isAuth:state.auth.isAuth
         }
     )
 }
