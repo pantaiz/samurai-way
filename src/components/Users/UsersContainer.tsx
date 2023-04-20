@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     follow,
     setCurrentPage,
-    setIsFetching,
+    setIsFetching, setIsFollowingProgress,
     setTotalUserCount,
     setUsers,
     unfollow,
@@ -14,7 +14,6 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
-
 
 
 export class UsersContainer extends React.Component<UsersContainerType, any> {
@@ -65,21 +64,25 @@ export type UsersDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalUserCount: number) => void
     setIsFetching: (isFetching: boolean) => void
+    setIsFollowingProgress: (userId:string|number,isFetching: boolean) => void
 }
 
 export type UsersContainerType = usersReducerStateType & UsersDispatchToPropsType
 
 const UsersStateToProps = (state: AppStateType): usersReducerStateType => {
     return {
+        ...state.userPage
+        /*
         users: state.userPage.users,
         pageSize: state.userPage.pageSize,
         totalUserCount: state.userPage.totalUserCount,
         currentPage: state.userPage.currentPage,
         isFetching: state.userPage.isFetching,
+        followingInProgress:state.userPage.followingInProgress*/
     }
 
 }
 
 
 export const UsersContainerforApp = connect(
-    UsersStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUserCount, setIsFetching})(UsersContainer)
+    UsersStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUserCount, setIsFetching,setIsFollowingProgress})(UsersContainer)
