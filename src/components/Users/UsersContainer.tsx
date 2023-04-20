@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     acceptFollow, acceptUnFollow,
-    follow, getUsersThunkCreator,
+    follow, getUsersThunkCreator, onPageChangedThunk,
     setCurrentPage,
     setIsFetching, setIsFollowingProgress,
     setTotalUserCount,
@@ -14,7 +14,7 @@ import {
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
+
 
 
 export class UsersContainer extends React.Component<UsersContainerType, any> {
@@ -31,14 +31,15 @@ export class UsersContainer extends React.Component<UsersContainerType, any> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
+        this.props.onPageChangedThunk(pageNumber,this.props.pageSize)
+       /* this.props.setCurrentPage(pageNumber)
         this.props.setIsFetching(true)
         usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(data.items)
 
-            })
+            })*/
     }
 
     render() {
@@ -74,6 +75,7 @@ export type UsersDispatchToPropsType = {
     setIsFetching: (isFetching: boolean) => void
     setIsFollowingProgress: (userId: string | number, isFetching: boolean) => void
     getUsers: (currentPage: number | string, pageSize: number | string) => void
+    onPageChangedThunk: (pageNumber: number , pageSize: number | string) => void
     acceptFollow: (id: string) => void
     acceptUnFollow: (id: string) => void
 }
@@ -99,6 +101,7 @@ export const UsersContainerforApp = connect(
         setIsFetching,
         setIsFollowingProgress,
         getUsers: getUsersThunkCreator,
+        onPageChangedThunk,
         acceptFollow,
         acceptUnFollow,
     })(UsersContainer)

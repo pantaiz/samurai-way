@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../assets/image/user.jpg";
-import {UsersContainerType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
 import {UsersType} from "../../redux/users-reducer";
 

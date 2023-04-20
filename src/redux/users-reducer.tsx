@@ -141,6 +141,19 @@ export const getUsersThunkCreator = (currentPage:number|string, pageSize:number|
 
     }
 }
+export const onPageChangedThunk = (pageNumber:number, pageSize:number|string) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setCurrentPage(pageNumber))
+        dispatch(setIsFetching(true))
+        usersAPI.getUsers(pageNumber, pageSize)
+            .then(data => {
+                dispatch(setIsFetching(false))
+                dispatch(setUsers(data.items))
+
+            })
+
+    }
+}
 
 export const acceptFollow = (id:string) => {
     return (dispatch: Dispatch) => {

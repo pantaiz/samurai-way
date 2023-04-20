@@ -1,25 +1,28 @@
 import {v1} from "uuid";
 import profile from "../components/Profile/Profile";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+import {setIsFetching, setTotalUserCount, setUsers} from "./users-reducer";
 
-export type ProfileInfoType={
-    aboutMe: string|null,
+export type ProfileInfoType = {
+    aboutMe: string | null,
     contacts: {
-        facebook:string|null
-        website: string|null
-        vk: string|null
-        twitter: string|null
-        instagram: string|null
-        youtube: string|null
-        github: string|null
-        mainLink: string|null
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
     },
     lookingForAJob: boolean
-    lookingForAJobDescription:string|null
+    lookingForAJobDescription: string | null
     fullName: string
-    userId: string|number
+    userId: string | number
     photos: {
-        small: string|null
-        large: string|null
+        small: string | null
+        large: string | null
     }
 }
 
@@ -50,7 +53,7 @@ let initionalState: ProfileDataType = {
     ProfileInfo: {
         aboutMe: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
         contacts: {
-            facebook:null,
+            facebook: null,
             website: null,
             vk: null,
             twitter: null,
@@ -60,7 +63,7 @@ let initionalState: ProfileDataType = {
             mainLink: null,
         },
         lookingForAJob: true,
-        lookingForAJobDescription:'не ищу а дурачусь',
+        lookingForAJobDescription: 'не ищу а дурачусь',
         fullName: "Shay Jordon",
         userId: 1,
         photos: {
@@ -98,14 +101,14 @@ let initionalState: ProfileDataType = {
     },
 }
 
-type ActtionType = addPostType | updateNewPostTextsType|setUserProfileACType
+type ActtionType = addPostType | updateNewPostTextsType | setUserProfileACType
 export type addPostType = {
     type: 'add-Post'
 
 }
-export type setUserProfileACType={
+export type setUserProfileACType = {
     type: "SET_USER_PROFILE",
-    profileInfo:ProfileInfoType
+    profileInfo: ProfileInfoType
 }
 export type updateNewPostTextsType = {
     type: 'update-New-Post-Texts'
@@ -115,8 +118,8 @@ export type updateNewPostTextsType = {
 
 export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
-        case "SET_USER_PROFILE":{
-            return {...state,ProfileInfo:action.profileInfo}
+        case "SET_USER_PROFILE": {
+            return {...state, ProfileInfo: action.profileInfo}
         }
         case 'add-Post': {
             debugger
@@ -153,6 +156,16 @@ export const updateNewPostTextsActionCreator: (newPostText: string) => updateNew
 export const AddPostActionCreator: () => addPostType = () => {
     return {type: "add-Post"}
 }
-export const setUserProfile=(profileInfo:ProfileInfoType):setUserProfileACType => {
+export const setUserProfile = (profileInfo: ProfileInfoType): setUserProfileACType => {
     return {type: "SET_USER_PROFILE", profileInfo}
+}
+
+
+export const getUserProfile = (userId: number | string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+
+    }
 }
