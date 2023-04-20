@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+import {ThunkAction} from "redux-thunk";
 
 
 export type ActtionType =
@@ -23,7 +26,7 @@ export type setIsFetchingType = {
 export type setIsFollowingProgressType = {
     type: "TOOGLE_IS_FOLLOWING_PROGRESS",
     isFetching: boolean
-    userId:string|number
+    userId: string | number
 }
 export type setCurrentPageType = {
     type: 'SET_CURRENT_PAGE',
@@ -52,7 +55,7 @@ export type usersReducerStateType = {
     totalUserCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: (number|string)[]
+    followingInProgress: (number | string)[]
 }
 
 let initionalState: usersReducerStateType = {
@@ -121,6 +124,45 @@ export const setTotalUserCount = (totalUserCount: number): setTotalUserCountType
 export const setIsFetching = (isFetching: boolean): setIsFetchingType => {
     return {type: "TOOGLE_IS_FETCHING", isFetching: isFetching}
 }
-export const setIsFollowingProgress = (userId:string|number,isFetching: boolean, ): setIsFollowingProgressType => {
-    return {type: "TOOGLE_IS_FOLLOWING_PROGRESS", userId,isFetching}
+export const setIsFollowingProgress = (userId: string | number, isFetching: boolean,): setIsFollowingProgressType => {
+    return {type: "TOOGLE_IS_FOLLOWING_PROGRESS", userId, isFetching}
+}
+
+
+export const getUsersThunkCreator = (currentPage:number|string, pageSize:number|string) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUserCount(data.totalCount))
+            })
+
+    }
+}
+
+export const acceptFollow = (id:string) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFollowingProgress(id,true))
+        usersAPI.setUnFollow(id)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(follow(id))
+                }
+                dispatch(setIsFollowingProgress(id,false))
+            })
+}
+}
+export const acceptUnFollow = (id:string) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFollowingProgress(id,true))
+        usersAPI.setFollow(id)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(unfollow(id))
+                }
+                dispatch(setIsFollowingProgress(id,false))
+            })
+}
 }
