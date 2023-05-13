@@ -1,21 +1,22 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
-import {Dispatch} from "redux";
-
+import {compose, Dispatch} from "redux";
 import {
     addNewMyMessageActionCreator,
     DialogsDataType,
     updatedNewMyMessageActionCreator
 } from "../../redux/dialog-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-
+import {getUserProfile} from "../../redux/profile-reducer";
+import {withRouter} from "react-router-dom";
+import {ProfileContainers} from "../Profile/ProfileContainer";
 
 
 type  DialogStateToPropsType = {
     dialogsData: DialogsDataType
-    isAuth:boolean
+    isAuth: boolean
 }
 type  DialogDispatchToPropsType = {
     sendMessage: () => void
@@ -24,16 +25,16 @@ type  DialogDispatchToPropsType = {
 export type  DialogPropsType = DialogStateToPropsType & DialogDispatchToPropsType
 
 
-const DialogStateToProps = (state: AppStateType):DialogStateToPropsType => {
+const DialogStateToProps = (state: AppStateType): DialogStateToPropsType => {
     return (
         {
-        dialogsData : state.dialogReducer,
-            isAuth:state.auth.isAuth
+            dialogsData: state.dialogReducer,
+            isAuth: state.auth.isAuth
         }
-        )
+    )
 }
 const DialogDispatchToProps = (dispatch: Dispatch): DialogDispatchToPropsType => {
-    return(
+    return (
         {
             sendMessage: () => {
                 dispatch(addNewMyMessageActionCreator())
@@ -45,4 +46,8 @@ const DialogDispatchToProps = (dispatch: Dispatch): DialogDispatchToPropsType =>
     )
 }
 
-export const DialogsContainer = withAuthRedirect(connect(DialogStateToProps, DialogDispatchToProps)(Dialogs))
+
+export default compose<ComponentType>(
+    withAuthRedirect,
+    connect(DialogStateToProps, DialogDispatchToProps)
+)(Dialogs)
