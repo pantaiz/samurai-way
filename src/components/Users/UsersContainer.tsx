@@ -85,9 +85,7 @@ export type UsersContainerType = usersReducerStateType & UsersDispatchToPropsTyp
 const UsersStateToProps = (state: AppStateType): usersReducerStateType => {
     return {
         ...state.userPage
-
     }
-
 }
 
 
