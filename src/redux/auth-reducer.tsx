@@ -30,7 +30,7 @@ export const authReducer = (state: authReducerStateType = initionalState, action
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
+                isAuth: true,
             }
         default:
             return state
@@ -39,6 +39,7 @@ export const authReducer = (state: authReducerStateType = initionalState, action
 
 
 export const setUserData = (id: string, email: string, login: string): setUserDataACType => {
+    debugger
     return {type: "SET_USER_DATA", data: {id, email, login}}
 }
 

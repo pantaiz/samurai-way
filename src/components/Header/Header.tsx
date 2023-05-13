@@ -8,6 +8,8 @@ type HeaderPropsType = {
 }
 
 const Header = (props: HeaderPropsType) => {
+
+    console.log(props.isAuth)
     return (<header className={s.header}>
 
         <img alt={'logo'}

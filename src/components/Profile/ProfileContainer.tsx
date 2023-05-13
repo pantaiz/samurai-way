@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import {getUserProfile, MyPostsData, ProfileInfoType} from "../../redux/profile-reducer";
 
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 type ProfileStateToPropsType = {
@@ -33,7 +34,7 @@ export class ProfileContainers extends React.Component<ProfilePropsType, any> {
     }
 
     render() {
-        if(!this.props.isAuth )return <Redirect to={'/login'}/>
+        if (!this.props.isAuth) return <Redirect to={'/login'}/>
         return (
             <Profile {...this.props}/>
         )
@@ -52,7 +53,7 @@ const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainers)
 
-export const ProfileContainerForApp = connect(ProfileStateToProps, {
+export const ProfileContainerForApp = withAuthRedirect(connect(ProfileStateToProps, {
     getUserProfile
-})(WithUrlDataContainerComponent)
+})(WithUrlDataContainerComponent))
 

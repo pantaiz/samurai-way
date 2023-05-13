@@ -9,6 +9,7 @@ import {
     DialogsDataType,
     updatedNewMyMessageActionCreator
 } from "../../redux/dialog-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 
@@ -44,4 +45,4 @@ const DialogDispatchToProps = (dispatch: Dispatch): DialogDispatchToPropsType =>
     )
 }
 
-export const DialogsContainer = connect(DialogStateToProps, DialogDispatchToProps)(Dialogs)
+export const DialogsContainer = withAuthRedirect(connect(DialogStateToProps, DialogDispatchToProps)(Dialogs))
