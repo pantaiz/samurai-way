@@ -31,6 +31,7 @@ export type ProfileDataType = {
 
     ProfileInfo: ProfileInfoType
     MyPostsData: MyPostsData
+    status:string
 }
 export type MyPostsData = {
     PostsData: Array<PostData>,
@@ -99,6 +100,7 @@ let initionalState: ProfileDataType = {
             newPostText: ''
         }
     },
+    status:''
 }
 
 type ActtionType = addPostType | updateNewPostTextsType | setUserProfileACType
@@ -146,6 +148,11 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             const stateCopy = {...state}
             stateCopy.MyPostsData.AddPostData.newPostText = action.newPostText
             return stateCopy
+        case 'SET-STATUS':
+            return {
+                ...state,
+                status:action.status
+            }
         default:
             return state
     }
@@ -158,6 +165,9 @@ export const AddPostActionCreator: () => addPostType = () => {
 }
 export const setUserProfile = (profileInfo: ProfileInfoType): setUserProfileACType => {
     return {type: "SET_USER_PROFILE", profileInfo}
+}
+export const setStatusAC = (profileInfo: ProfileInfoType): setUserProfileACType => {
+    return {type: "SET-STATUS", }
 }
 
 

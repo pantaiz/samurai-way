@@ -9,7 +9,7 @@ export class ProfileStatus extends React.Component<propsType>{
     state={
         editMode:false
     }
-    activeEditMode(){
+    activeEditMode=()=>{
         this.setState({
             editMode:!this.state.editMode
         })

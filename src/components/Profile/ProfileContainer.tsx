@@ -14,6 +14,7 @@ type ProfileStateToPropsType = {
     profileinfo: ProfileInfoType
     myPostsData: MyPostsData
     isAuth:boolean
+    status:string
 }
 export type ParamsPropsType = {
     userId: string | undefined;
@@ -31,8 +32,9 @@ export class ProfileContainers extends React.Component<ProfilePropsType> {
     componentDidMount() {
 
         let userId = this.props.match.params.userId
-        if (!userId) userId = '2'
+       if (!userId) userId = '2'
         this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
     }
 
     render() {
@@ -48,7 +50,8 @@ const ProfileStateToProps = (state: AppStateType): ProfileStateToPropsType => {
         {
             profileinfo: state.profileReducer.ProfileInfo,
             myPostsData: state.profileReducer.MyPostsData,
-            isAuth:state.auth.isAuth
+            isAuth:state.auth.isAuth,
+            status:state.profileReducer.status
         }
     )
 }
