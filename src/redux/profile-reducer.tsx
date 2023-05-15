@@ -1,8 +1,7 @@
 import {v1} from "uuid";
-import profile from "../components/Profile/Profile";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
-import {setIsFetching, setTotalUserCount, setUsers} from "./users-reducer";
+
 
 export type ProfileInfoType = {
     aboutMe: string | null,
@@ -26,20 +25,20 @@ export type ProfileInfoType = {
     }
 }
 
-
 export type ProfileDataType = {
-
     ProfileInfo: ProfileInfoType
     MyPostsData: MyPostsData
-    status:string
+    status: string
 }
 export type MyPostsData = {
     PostsData: Array<PostData>,
     AddPostData: AddPostData
 }
+
 export type AddPostData = {
     newPostText: string,
 }
+
 export type PostData = {
     id: string,
     avatar: string,
@@ -48,8 +47,6 @@ export type PostData = {
     message: string,
     likeCounts: number
 }
-
-
 let initionalState: ProfileDataType = {
     ProfileInfo: {
         aboutMe: "The standard chunk of Lorem Ipsum used since is reproduced. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.",
@@ -100,13 +97,11 @@ let initionalState: ProfileDataType = {
             newPostText: ''
         }
     },
-    status:''
+    status: ''
 }
-
-type ActtionType = addPostType | updateNewPostTextsType | setUserProfileACType |setStatusType
+type ActtionType = addPostType | updateNewPostTextsType | setUserProfileACType | setStatusType
 export type addPostType = {
     type: 'add-Post'
-
 }
 export type setUserProfileACType = {
     type: "SET_USER_PROFILE",
@@ -116,7 +111,6 @@ export type updateNewPostTextsType = {
     type: 'update-New-Post-Texts'
     newPostText: string
 }
-
 
 export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
@@ -144,21 +138,19 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             return stateCopy
         }
         case 'update-New-Post-Texts':
-
             const stateCopy = {...state}
             stateCopy.MyPostsData.AddPostData.newPostText = action.newPostText
             return stateCopy
         case 'SET-STATUS':
             return {
                 ...state,
-                status:action.status
+                status: action.status
             }
         default:
             return state
     }
 }
-
-type setStatusType=ReturnType<typeof setStatusAC>
+type setStatusType = ReturnType<typeof setStatusAC>
 export const updateNewPostTextsActionCreator: (newPostText: string) => updateNewPostTextsType = (newPostText) => {
     return {type: "update-New-Post-Texts", newPostText: newPostText}
 }
@@ -171,8 +163,6 @@ export const setUserProfile = (profileInfo: ProfileInfoType): setUserProfileACTy
 export const setStatusAC = (status: string) => {
     return {type: "SET-STATUS", status} as const
 }
-
-
 export const getUserProfile = (userId: number | string) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfile(userId).then(response => {
@@ -181,7 +171,6 @@ export const getUserProfile = (userId: number | string) => {
 
     }
 }
-
 export const getUserStatus = (userId: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.getStatus(userId).then(response => {
@@ -189,11 +178,10 @@ export const getUserStatus = (userId: string) => {
         })
     }
 }
-
 export const updateUserSatatus = (status: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(status).then(response => {
-            if (response.data.resultCode===0){
+            if (response.data.resultCode === 0) {
                 dispatch(setStatusAC(status))
             }
         })
