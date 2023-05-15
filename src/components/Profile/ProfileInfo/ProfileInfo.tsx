@@ -7,6 +7,8 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoProps = {
     profileinfo: ProfileInfoType
+    updateStatus: (status: string) => void,
+    status: string
 }
 export const ProfileInfo = (props: ProfileInfoProps) => {
     return (
@@ -15,8 +17,13 @@ export const ProfileInfo = (props: ProfileInfoProps) => {
                     <span className={s.AvaName}>
                 <img alt={'avatar'}
                      src={props.profileinfo.photos.small != null ? props.profileinfo.photos.small : userPhoto}/>
-                        <span><div className={s.Name}>{props.profileinfo.fullName}</div>
-                        <div className={s.Nick}>{props.profileinfo.fullName}<ProfileStatus status={'sadasaaaaaaada'}/></div></span></span>
+                        <span>
+                            <div className={s.Name}>{props.profileinfo.fullName}</div>
+                            <div className={s.Nick}>{props.profileinfo.fullName}
+                                <ProfileStatus updateStatus={props.updateStatus} status={props.status}/>
+                            </div>
+                        </span>
+                    </span>
                 <button className={s.button}>+Follow</button>
             </div>
             <div className={s.Description}>{props.profileinfo.aboutMe}</div>

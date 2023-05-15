@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI, usersAPI} from "../api/api";
-import {setUserProfile} from "./profile-reducer";
+
 
 type authReducerStateType = {
     id: null | string
@@ -37,9 +37,7 @@ export const authReducer = (state: authReducerStateType = initionalState, action
     }
 }
 
-
 export const setUserData = (id: string, email: string, login: string): setUserDataACType => {
-    debugger
     return {type: "SET_USER_DATA", data: {id, email, login}}
 }
 
@@ -49,8 +47,6 @@ export const getAuthUserData = () => {
             .then(data => {
                 let {id, email, login} = data
                 dispatch(setUserData(id, email, login))
-
             })
-
     }
 }
