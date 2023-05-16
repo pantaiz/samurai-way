@@ -38,15 +38,7 @@ export type FriendMessageData = {
     },
 }
 
-export type ActtionType = updatedNewMyMessageType | addNewMyMessageType
 
-export type updatedNewMyMessageType = {
-    type: 'updated-New-My-Message',
-    newMyMessage: string,
-}
-export type addNewMyMessageType = {
-    type: 'add-New-My-Message'
-}
 
 let initionalState: DialogsDataType = {
     messageData: {
@@ -137,19 +129,19 @@ let initionalState: DialogsDataType = {
 export const dialogReducer = (state: DialogsDataType = initionalState, action: ActtionType): DialogsDataType => {
     switch (action.type) {
 
-        case 'updated-New-My-Message': {
+      /*  case 'updated-New-My-Message': {
             const stateCopy={...state}
             stateCopy.messageData.messageSender.newMyMessage=action.newMyMessage;
             return stateCopy
-        }
-        case 'add-New-My-Message':
+        }*/
+        case "ADD-NEW-MESSAGE":
             let NewMyMessage = {
                 id: v1(),
                 user: {
                     name: 'Some Name',
                 },
                 message: {
-                    text: state.messageData.messageSender.newMyMessage,
+                    text: action.newMyMessage,
                     time: '22:00',
                 }
             }
@@ -161,9 +153,15 @@ export const dialogReducer = (state: DialogsDataType = initionalState, action: A
             return state
     }
 }
-export const updatedNewMyMessageActionCreator: (newMyMessage: string) => updatedNewMyMessageType = (newMyMessage) => {
-    return {type: "updated-New-My-Message", newMyMessage: newMyMessage}
-}
-export const addNewMyMessageActionCreator: (() => addNewMyMessageType) = () => {
-    return {type: "add-New-My-Message"}
+export type ActtionType = addNewMyMessageType
+
+
+export type addNewMyMessageType = ReturnType<typeof addNewMyMessageActionCreator>
+/*export type updatedNewMyMessageType = ReturnType<typeof updatedNewMyMessageActionCreator>
+
+export const updatedNewMyMessageActionCreator = () => {
+    return {type: "updated-New-My-Message", }  as  const
+}*/
+export const addNewMyMessageActionCreator= (newMyMessage:string) => {
+    return {type: "ADD-NEW-MESSAGE",newMyMessage} as  const
 }

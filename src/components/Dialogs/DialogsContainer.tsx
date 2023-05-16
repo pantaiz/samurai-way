@@ -6,7 +6,6 @@ import {compose, Dispatch} from "redux";
 import {
     addNewMyMessageActionCreator,
     DialogsDataType,
-    updatedNewMyMessageActionCreator
 } from "../../redux/dialog-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {getUserProfile} from "../../redux/profile-reducer";
@@ -19,8 +18,7 @@ type  DialogStateToPropsType = {
     isAuth: boolean
 }
 type  DialogDispatchToPropsType = {
-    sendMessage: () => void
-    updatedNewMyMessage: (text: string) => void
+    sendMessage: (message: string) => void
 }
 export type  DialogPropsType = DialogStateToPropsType & DialogDispatchToPropsType
 
@@ -36,12 +34,10 @@ const DialogStateToProps = (state: AppStateType): DialogStateToPropsType => {
 const DialogDispatchToProps = (dispatch: Dispatch): DialogDispatchToPropsType => {
     return (
         {
-            sendMessage: () => {
-                dispatch(addNewMyMessageActionCreator())
+            sendMessage: (message) => {
+                dispatch(addNewMyMessageActionCreator(message))
             },
-            updatedNewMyMessage: (newPostText: string) => {
-                dispatch(updatedNewMyMessageActionCreator(newPostText))
-            }
+
         }
     )
 }

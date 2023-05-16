@@ -99,18 +99,7 @@ let initionalState: ProfileDataType = {
     },
     status: ''
 }
-type ActtionType = addPostType | updateNewPostTextsType | setUserProfileACType | setStatusType
-export type addPostType = {
-    type: 'add-Post'
-}
-export type setUserProfileACType = {
-    type: "SET_USER_PROFILE",
-    profileInfo: ProfileInfoType
-}
-export type updateNewPostTextsType = {
-    type: 'update-New-Post-Texts'
-    newPostText: string
-}
+
 
 export const profileReducer = (state: ProfileDataType = initionalState, action: ActtionType): ProfileDataType => {
     switch (action.type) {
@@ -118,13 +107,14 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             return {...state, ProfileInfo: action.profileInfo}
         }
         case 'add-Post': {
+
             debugger
             let newPost = {
                 id: v1(),
                 avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",
                 nick: "@Shay_Jordon",
                 name: "Shay Jordon",
-                message: state.MyPostsData.AddPostData.newPostText,
+                message: action.postMessage,
                 likeCounts: 0
             }
             const stateCopy = {
@@ -137,10 +127,6 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             stateCopy.MyPostsData.AddPostData.newPostText = ''
             return stateCopy
         }
-        case 'update-New-Post-Texts':
-            const stateCopy = {...state}
-            stateCopy.MyPostsData.AddPostData.newPostText = action.newPostText
-            return stateCopy
         case 'SET-STATUS':
             return {
                 ...state,
@@ -150,19 +136,24 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             return state
     }
 }
+
+type ActtionType = addPostType  | setUserProfileACType | setStatusType
+export type addPostType =  ReturnType<typeof AddPostActionCreator>
+export type setUserProfileACType = ReturnType<typeof setUserProfile>
 type setStatusType = ReturnType<typeof setStatusAC>
-export const updateNewPostTextsActionCreator: (newPostText: string) => updateNewPostTextsType = (newPostText) => {
-    return {type: "update-New-Post-Texts", newPostText: newPostText}
+
+export const AddPostActionCreator= (postMessage:string)  => {
+    return {type: "add-Post" ,postMessage} as const
 }
-export const AddPostActionCreator: () => addPostType = () => {
-    return {type: "add-Post"}
-}
-export const setUserProfile = (profileInfo: ProfileInfoType): setUserProfileACType => {
-    return {type: "SET_USER_PROFILE", profileInfo}
+export const setUserProfile = (profileInfo: ProfileInfoType) => {
+    return {type: "SET_USER_PROFILE", profileInfo} as  const
 }
 export const setStatusAC = (status: string) => {
     return {type: "SET-STATUS", status} as const
 }
+
+
+
 export const getUserProfile = (userId: number | string) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfile(userId).then(response => {

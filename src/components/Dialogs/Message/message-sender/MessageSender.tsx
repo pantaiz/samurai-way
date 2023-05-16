@@ -4,34 +4,42 @@ import s from './MessageSender.module.css'
 import {
     messageSenderType,
 } from "../../../../redux/dialog-reducer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 
 export type MessageSenderProps = {
     messageSenderData: messageSenderType
-    sendMessage: () => void
-    updatedNewMyMessage: (text: string) => void
+    sendMessage: (message:string) => void
 }
 export const MessageSender = (props: MessageSenderProps) => {
-    const updatedNewMyMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatedNewMyMessage(e.currentTarget.value)
-    }
 
-    const sendMessage = () => {
-
-        props.sendMessage()
+    const sendMessage = (messageDATA:FormDataType) => {
+        props.sendMessage(messageDATA.message)
     }
     return (
         <>
             <div className={s.sendForm}>
-                <textarea
-                    onChange={updatedNewMyMessage}
-                    placeholder={'Type your message'}
-                    value={props.messageSenderData.newMyMessage}
-                />
-                <button onClick={sendMessage} className={s.button}>
-                    Send
-                </button>
+                <DialogsReduxForm onSubmit={sendMessage}/>
             </div>
         </>
     )
 }
+type FormDataType={
+    message:string
+}
+const DialogForm: React.FC<InjectedFormProps<FormDataType> > = (props) => {
+    return (
+        <form className={s.sendForm} onSubmit={props.handleSubmit}>
+            <div>
+                <Field placeholder={'Type your message'}
+                       name={'message'} component={"textarea"}/>
+            </div>
+            <button className={s.button}>
+                Send
+            </button>
+        </form>
+    )
+}
+const DialogsReduxForm = reduxForm<FormDataType>({
+    form: 'sendMessage'
+})(DialogForm)

@@ -13,8 +13,7 @@ const Dialogs = (props: DialogPropsType) => {
 
     return (<div className={s.dialogs}>
             <DialigsItem dialogsData={props.dialogsData.dialogsItemData}/>{/*отрисовываем наши диалоги*/}
-            <Message messageData={props.dialogsData.messageData} sendMessage={props.sendMessage}
-                     updatedNewMyMessage={props.updatedNewMyMessage}/>{/*отрисовываем наши сообщения*/}
+            <Message messageData={props.dialogsData.messageData} sendMessage={props.sendMessage}/>{/*отрисовываем наши сообщения*/}
         </div>
     )
 

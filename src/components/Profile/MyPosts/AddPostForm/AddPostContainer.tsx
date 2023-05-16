@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    AddPostActionCreator,
-    updateNewPostTextsActionCreator
-} from "../../../../redux/profile-reducer";
+import {AddPostActionCreator} from "../../../../redux/profile-reducer";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
@@ -13,8 +10,7 @@ type AddPostStateToPropsType = {
     textareaText: string
 }
 type AddPostDispatchToPropsType = {
-    addPost: () => void
-    updateNewPostText: (text: string) => void
+    addPost: (postMessage:string) => void
 }
 export type AddPostPropsType = AddPostDispatchToPropsType & AddPostStateToPropsType
 
@@ -30,13 +26,9 @@ const AddPostStateToProps = (state: AppStateType): AddPostStateToPropsType => {
 const AddPostDispatchToProps = (dispatch: Dispatch): AddPostDispatchToPropsType => {
     return (
         {
-            addPost: () => {
-                dispatch(AddPostActionCreator())
+            addPost: (postMessage) => {
+                dispatch(AddPostActionCreator(postMessage))
             },
-            updateNewPostText: (text: string) => {
-                dispatch(updateNewPostTextsActionCreator(text))
-
-            }
         }
     )
 }

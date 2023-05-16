@@ -32,8 +32,10 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
 const LoginReduxForm = reduxForm<FormDataType>({
     form: 'login'
 })(LoginForm)
+
+
 const Login = () => {
-    const onSubmit=(formData:any)=>{
+    const onSubmit=(formData:FormDataType)=>{
         console.log(formData)
     }
     return (<div className={s.banner}>
