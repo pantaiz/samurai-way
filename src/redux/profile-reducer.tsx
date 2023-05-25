@@ -107,8 +107,6 @@ export const profileReducer = (state: ProfileDataType = initionalState, action: 
             return {...state, ProfileInfo: action.profileInfo}
         }
         case 'add-Post': {
-
-            debugger
             let newPost = {
                 id: v1(),
                 avatar: "https://i.ytimg.com/vi/ygkc7841kBk/hqdefault.jpg",

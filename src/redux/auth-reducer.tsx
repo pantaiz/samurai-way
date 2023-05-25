@@ -12,7 +12,7 @@ const initionalState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: true
 }
 export type ActtionType = setUserDataACType
 type setUserDataACType = {
