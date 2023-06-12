@@ -1,3 +1,12 @@
-моё прохождения пути самурая от димыча!
-![image](https://user-images.githubusercontent.com/111352651/216936692-b7a253c8-c22e-4c9b-963b-70c37cbec05e.png)
-![image](https://user-images.githubusercontent.com/111352651/216936823-78bffb29-0bb9-4753-95e3-7a3fba88d617.png)
+# Проект социальной сети
+## Стек
++ React
++ Typescript
++ Redux
++ formik
++ axios
++ react-router-dom
++ redux-thunk
+![image](https://github.com/pantaiz/samurai-way/assets/111352651/64fa02cb-c12f-476a-ae01-0c569d031e99)
+![image](https://github.com/pantaiz/samurai-way/assets/111352651/df0cfb34-0d61-44df-b53a-3581c0b78268)
+![image](https://github.com/pantaiz/samurai-way/assets/111352651/f85e0641-9cd3-479b-9bfc-5ac37cd00c37)
